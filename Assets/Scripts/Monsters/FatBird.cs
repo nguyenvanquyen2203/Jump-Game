@@ -46,4 +46,8 @@ public class FatBird : Monster
         isFall = !isFall;
         velocity = 0f;
     }
+    protected void Move(Vector2 moveVector)
+    {
+        rb.velocity = moveVector * speed;
+    }
 }

@@ -85,10 +85,6 @@ public abstract class Monster : MonoBehaviour
     {
         rb.velocity = new Vector2(speed * direction, rb.velocity.y);
     }
-    protected void Move(Vector2 moveVector)
-    {
-        rb.velocity = moveVector * speed;
-    }
     protected void LockMove()
     {
         lockMove = 0;
