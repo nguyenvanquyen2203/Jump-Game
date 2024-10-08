@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4655743196045345498}
-  - component: {fileID: 4655743196045345499}
+  - component: {fileID: 5568990364975864274}
   m_Layer: 0
   m_Name: BreakBoxManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4655743196045345499
+--- !u!114 &5568990364975864274
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,8 +41,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4655743196045345501}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e1a8ec52ca12da4e85513183990e162, type: 3}
+  m_Script: {fileID: 11500000, guid: b087026b4a8f8d148a873bd96cba7bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  breakBoxObj: {fileID: 3138756631189635217, guid: c5c17e807028a134e800c06a64a8afe5, type: 3}
-  quantity: 2
+  numberPool: 5
+  poolObj: {fileID: 7055353126565682177, guid: 90d89c555051cac45ba5b36f418aca62, type: 3}

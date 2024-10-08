@@ -20,7 +20,7 @@ public abstract class Item : MonoBehaviour
     }
     private void Disable()
     {
-        CollectionManager.Instance.Active(transform.position);
+        CollectionManager.Instance.ActiveFruitCollection(transform.position);
         gameObject.SetActive(false);
     }
 }

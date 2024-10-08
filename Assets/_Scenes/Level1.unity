@@ -23984,11 +23984,19 @@ PrefabInstance:
     - target: {fileID: 3501711535116518963, guid: 266a503b4f0249441adc7e6181909414, type: 3}
       propertyPath: poolObj
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1315527242449677564, guid: 01cb0ab8373bfde4bb858c0470c47230, type: 3}
     - target: {fileID: 8775876373515696024, guid: 266a503b4f0249441adc7e6181909414, type: 3}
       propertyPath: poolCtrl
       value: 
       objectReference: {fileID: 387173535}
+    - target: {fileID: 8775876373515696024, guid: 266a503b4f0249441adc7e6181909414, type: 3}
+      propertyPath: fruitCollect
+      value: 
+      objectReference: {fileID: 387173535}
+    - target: {fileID: 8775876374378107166, guid: 266a503b4f0249441adc7e6181909414, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8775876374447338898, guid: 266a503b4f0249441adc7e6181909414, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -24036,6 +24044,10 @@ PrefabInstance:
     - target: {fileID: 8775876374447338909, guid: 266a503b4f0249441adc7e6181909414, type: 3}
       propertyPath: m_Name
       value: Effects
+      objectReference: {fileID: 0}
+    - target: {fileID: 8947199050286628573, guid: 266a503b4f0249441adc7e6181909414, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 266a503b4f0249441adc7e6181909414, type: 3}

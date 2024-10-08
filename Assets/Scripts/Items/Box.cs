@@ -12,7 +12,7 @@ public class Box : MonoBehaviour
     public void TakeHit()
     {
         boxHp--;
-        if (boxHp <= 0) BreakBoxManager.Instance.BreakEffect(transform.position); 
+        if (boxHp <= 0) CollectionManager.Instance.ActiveBoxBreak(transform.position);
         anim.Play("takeHit");
     }
     public void TakeHitAct()

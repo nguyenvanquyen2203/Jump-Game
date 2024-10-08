@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fruitCollect: {fileID: 3501711535116518963}
+  boxBreakCtrl: {fileID: 8214377566115980754}
 --- !u!1 &8775876374378107166
 GameObject:
   m_ObjectHideFlags: 0
@@ -5053,6 +5054,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cb3e0e07fd1f2143aa589a7d99d2662, type: 3}
+--- !u!114 &8214377566115980754 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5568990364975864274, guid: 7cb3e0e07fd1f2143aa589a7d99d2662, type: 3}
+  m_PrefabInstance: {fileID: 4374776330021141504}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b087026b4a8f8d148a873bd96cba7bf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8947199050286628570 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4655743196045345498, guid: 7cb3e0e07fd1f2143aa589a7d99d2662, type: 3}
