@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointToPoint : Subject
+public class PointToPoint : Subject, IMovePlatform
 {
     private enum State
     {
@@ -12,9 +12,12 @@ public class PointToPoint : Subject
     private Animator animator;
     private int targetPoint;
     public List<Transform> points;
-    public float speed;
     private bool isOn;
-    public int direction = 1;
+    //public int direction = 1;
+
+    public Vector2 direction { get; set; }
+    [field: SerializeField] public float speed { get; set; }
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -23,7 +26,7 @@ public class PointToPoint : Subject
     }
     void Start()
     {
-        direction = -1;
+        UpdateDirection();
         targetPoint = 0;
         state = State.Active;
     }
@@ -36,15 +39,14 @@ public class PointToPoint : Subject
             {
                 if ((transform.position - points[targetPoint].position).sqrMagnitude < .01f)
                 {
+                    transform.position = points[targetPoint].position;
                     if (!isOn)
                     {
                         state = State.Inactive;
                     }
                     targetPoint++;
                     if (targetPoint == points.Count) targetPoint = 0;
-                    if (transform.position.x - points[targetPoint].position.x > 0) direction = -1;
-                    if (transform.position.x - points[targetPoint].position.x < 0) direction = 1;
-                    NotifyObserver();
+                    ChangeDirection();
                 }
                 else transform.position = Vector3.MoveTowards(transform.position, points[targetPoint].position, speed * Time.fixedDeltaTime);
             }
@@ -63,5 +65,19 @@ public class PointToPoint : Subject
     public void TurnOff()
     {
         isOn = false;
+    }
+
+    public void ChangeDirection()
+    {
+        UpdateDirection();
+        NotifyObserver();
+    }
+    private void UpdateDirection()
+    {
+        direction = (points[targetPoint].position - transform.position).normalized;
+        /*if (transform.position.x - points[targetPoint].position.x > 0) direction = Vector2.left;
+        if (transform.position.x - points[targetPoint].position.x < 0) direction = Vector2.right;
+        if (transform.position.y - points[targetPoint].position.y > 0) direction = Vector2.down;
+        if (transform.position.y - points[targetPoint].position.y < 0) direction = Vector2.up;*/
     }
 }

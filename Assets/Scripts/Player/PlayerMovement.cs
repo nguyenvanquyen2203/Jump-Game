@@ -52,7 +52,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else isGrounded = false;
         float horizontal = playerInput.GetHorizontal();
-        moveVector = new Vector2(horizontal * m_speed, m_rb.velocity.y);
+        if (bonusVector.y < 0f) moveVector = new Vector2(horizontal * m_speed, 0f);
+        else moveVector = new Vector2(horizontal * m_speed, m_rb.velocity.y - bonusVector.y);
         if (isGrounded && horizontal != 0f && couter >= delayGroundDust)
         {
             dustPSes[currentDust].Play();

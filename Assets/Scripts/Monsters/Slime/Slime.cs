@@ -14,19 +14,16 @@ public class Slime : Monster
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (cooldown > 0f) cooldown -= Time.fixedDeltaTime;
-        else
-        {
-            cooldown = 1f;
-            slimeParticalCtrl.ActivePool(transform.position - Vector3.up * .9f);
-        }
         if (lockMove != 0)
         {
             Move();
         }
-    }
-    private void CreateSlimePartical()
-    {
-
+        if (IsDead()) return;
+        if (cooldown > 0f) cooldown -= Time.fixedDeltaTime;
+        else
+        {
+            cooldown = 1f;
+            slimeParticalCtrl.ActivePool(transform.position - Vector3.up * .825f);
+        }
     }
 }

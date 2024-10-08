@@ -1,24 +1,26 @@
 using UnityEngine;
 
-public class PlayerOn : Subject, IObserver
+public class PlayerOn : MonoBehaviour, IObserver
 {
-    private PointToPoint pointToPoint;
+    private Subject subject;
+    private IMovePlatform movePlatform;
     private PlayerMovement player;
     private float speed;
-    private int direction;
+    private Vector2 direction;
     private void Awake()
     {
-        pointToPoint = GetComponent<PointToPoint>();
+        subject = GetComponent<Subject>();
+        movePlatform = GetComponent<IMovePlatform>();
     }
     private void Start()
     {
-        direction = pointToPoint.direction;
-        speed = pointToPoint.speed;
+        direction = movePlatform.direction;
+        speed = movePlatform.speed;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         player = collision.gameObject.GetComponent<PlayerMovement>();
-        SetBonus(Vector2.right * speed * direction);
+        SetBonus(speed * direction);
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -28,12 +30,12 @@ public class PlayerOn : Subject, IObserver
     public void SetBonus(Vector2 bonusVector) => player?.SetBonus(bonusVector);
     private void OnEnable()
     {
-        pointToPoint.AddObserver(this);
+        subject.AddObserver(this);
     }
     private void ChangeDirection()
     {
-        direction = pointToPoint.direction;
-        SetBonus(Vector2.right * speed * direction);
+        direction = movePlatform.direction;
+        SetBonus(speed * direction);
     } 
     public void OnNotify()
     {
@@ -41,6 +43,6 @@ public class PlayerOn : Subject, IObserver
     }
     private void OnDisable()
     {
-        pointToPoint.RemoveObserver(this);
+        subject.RemoveObserver(this);
     }
 }
