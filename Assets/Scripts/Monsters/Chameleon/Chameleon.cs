@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Chameleon : Monster
+public class Chameleon : AttackMonster
 {
     [SerializeField] private float timeAttack;
     private float cooldownAttack;

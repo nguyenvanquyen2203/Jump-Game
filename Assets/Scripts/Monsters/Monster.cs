@@ -8,25 +8,21 @@ public abstract class Monster : MonoBehaviour
     private bool lockState;
     private int direction;
     protected int lockMove;
-    protected bool canAttack;
     public MonsterInfo monsterInfo;
     protected int hp;
     protected float speed;
     private bool isDead;
     protected void InitMonster()
     {
-        isDead = false;
         monsterAnimator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        lockState = false;
-        lockMove = 1;
-        direction = 1;
         ResetInfo();
     }
     public void ResetInfo()
     {
         hp = monsterInfo.hp;
         speed = monsterInfo.speed;
+        direction = 1;
         UnlockState();
         UnlockMove();
         isDead = false;
@@ -108,6 +104,5 @@ public abstract class Monster : MonoBehaviour
         transform.localScale = new Vector3(direction, 1, 1);
         direction *= -1;
     }
-    public void CanAttack(bool _canAttack) => canAttack = _canAttack;
     public bool IsDead() => isDead;
 }

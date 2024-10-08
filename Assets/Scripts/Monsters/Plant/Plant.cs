@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Plant : Monster
+public class Plant : AttackMonster
 {
     public GameObject bulletPref;
     public Transform bulletSpawnPoint;

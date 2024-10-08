@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlantCheck : MonoBehaviour
 {
-    public Monster monster;
+    public AttackMonster monster;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         monster.CanAttack(true);

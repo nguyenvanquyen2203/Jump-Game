@@ -3,13 +3,13 @@ using UnityEngine;
 public class MonsterRayCheck : MonoBehaviour
 {
     private BoxCollider2D box;
-    private Monster monster;
+    private AttackMonster monster;
     [SerializeField] private float rayDistance;
     [SerializeField] private LayerMask checkLayer;
     private void Awake()    
     {
         box = GetComponent<BoxCollider2D>();
-        monster = GetComponent<Monster>();
+        monster = GetComponent<AttackMonster>();
     }
     private void FixedUpdate()
     {
