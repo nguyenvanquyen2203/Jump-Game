@@ -150,8 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063becf011a818945a3e498a084e870d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
-  speed: 0
+  monsterInfo: {fileID: 0}
   bulletPref: {fileID: 5834336867226684215, guid: c78b68cef017c8945ad3d69efefa8858, type: 3}
   bulletSpawnPoint: {fileID: 5355292474997013129}
   numberBullets: 5

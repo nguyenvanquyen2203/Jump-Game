@@ -8,6 +8,7 @@ public class CollectionManager : MonoBehaviour
     public static CollectionManager Instance { get { return instance; } }
     public PoolCtrl fruitCollect;
     public PoolCtrl boxBreakCtrl;
+    public PoolCtrl pieceBreakCtrl;
     private void Awake()
     {
         instance = this;
@@ -19,5 +20,9 @@ public class CollectionManager : MonoBehaviour
     public void ActiveBoxBreak(Vector3 itemPos)
     {
         boxBreakCtrl.ActivePool(itemPos);
+    }
+    public void ActivePieceBreak(Vector3 itemPos)
+    {
+        pieceBreakCtrl.ActivePool(itemPos);
     }
 }

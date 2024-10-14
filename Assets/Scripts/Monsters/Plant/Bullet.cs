@@ -19,7 +19,8 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) collision.GetComponent<PlayerHealth>().Hurt();
-        else gameObject.SetActive(false);
+        CollectionManager.Instance.ActivePieceBreak(transform.position);
+        gameObject.SetActive(false);
     }
     public void SetDirection(int _dir) => direction = _dir;
     private void OnDisable()

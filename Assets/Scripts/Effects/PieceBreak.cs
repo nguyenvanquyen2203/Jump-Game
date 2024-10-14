@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakBox : MonoBehaviour
+public class PieceBreak : MonoBehaviour
 {
     public List<ParticleSystem> pieces;
     private void OnEnable()
