@@ -1336,6 +1336,7 @@ GameObject:
   - component: {fileID: 4130078204780213223}
   - component: {fileID: 5952223989418262124}
   - component: {fileID: 9141722535957268735}
+  - component: {fileID: 5702106430805551799}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1456,6 +1457,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerIcon: {fileID: 4130078204621205383}
   characterDB: {fileID: 11400000, guid: 034e504694d019f418d2e18cbc35ffb8, type: 2}
+--- !u!114 &5702106430805551799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4130078204780213216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf4fd47f217cc54e87167d25ebe7379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointText: {fileID: 618863044482392902}
+  plusPointText: {fileID: 1803594385527843913}
+  time: 0.5
 --- !u!1 &4130078205199052588
 GameObject:
   m_ObjectHideFlags: 0

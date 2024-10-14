@@ -25,15 +25,15 @@ TagManager:
   - Ground
   - Platform
   - Monster
-  - HitBox
+  - 
   - Player
   - EnemyCheck
   - Trap
   - Item
-  - Boss
-  - BossRoom
+  - 
+  - 
   - MonterCheckWay
-  - Background
+  - 
   - 
   - 
   - 

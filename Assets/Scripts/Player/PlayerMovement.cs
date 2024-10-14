@@ -22,6 +22,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float m_jumpHeight;
     private Vector2 bonusVector;
     // Start is called before the first frame update
+    private void Reset()
+    {
+        playerInput = GameObject.Find("InputManager").GetComponent<InputManager>();
+    }
     private void Awake()
     {
         m_animator = GetComponent<Animator>();
