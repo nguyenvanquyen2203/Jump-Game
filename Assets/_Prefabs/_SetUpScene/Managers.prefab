@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 231e3fe6f18e8a144b722ec835f353b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fakePlayerObj: {fileID: 8521809610645267922, guid: 511aa3d136b87aa498eeb0f544500fdf, type: 3}
+  fakePlayerObj: {fileID: 4471556252936472279, guid: 79f8bf46626f55248b09133f20c3ab15, type: 3}
   playerObj: {fileID: 976621635352345183, guid: 5abfef0f01b766040986df4a87fe028f, type: 3}
   spawnPoint: {fileID: 6985326605727485790, guid: 8836fc06cc9fb134b8e458bad6f7c3d4, type: 3}
   fakePlayer: {fileID: 0}
