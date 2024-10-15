@@ -1,6 +1,7 @@
+using System.Linq.Expressions;
 using UnityEngine;
 
-public class Bat : Monster
+public class Bat : FlyingMonster
 {
     private Vector3 centerPos;
     [SerializeField] private float restTime;
@@ -59,5 +60,12 @@ public class Bat : Monster
         if ((transform.position - targetPos).sqrMagnitude < .01f) return true;
         transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.fixedDeltaTime * lockMove);
         return false;
+    }
+    protected void ChangeDirection()
+    {
+        moveVector = new Vector3(Random.Range(-moveSpace.x, moveSpace.x), Random.Range(-moveSpace.y, moveSpace.y * 1 / 2), 0f);
+        Vector2 targetPos = centerPos + new Vector3(moveVector.x, Mathf.Clamp(moveVector.y, -moveSpace.y, 0f), moveVector.z);
+        base.ChangeDirection(-transform.position + new Vector3(targetPos.x, targetPos.y, transform.position.z));
+        Invoke(nameof(ChangeDirection), 3f);
     }
 }

@@ -666,7 +666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6125441917667919297, guid: 66542928b03f9ff4d9db6e8a94a96b0f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6125441917667919309, guid: 66542928b03f9ff4d9db6e8a94a96b0f, type: 3}
       propertyPath: monsterInfo

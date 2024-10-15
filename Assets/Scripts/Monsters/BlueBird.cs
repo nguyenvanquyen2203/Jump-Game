@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BlueBird : Monster
+public class BlueBird : RunMonster
 {
     // Start is called before the first frame update
     private void Awake()
@@ -10,27 +10,17 @@ public class BlueBird : Monster
     void Start()
     {
         BirdMove();
+        Move();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (lockMove != 0)
+        /*if (lockMove != 0)
         {
             Move();
-        }
+        }*/
     }
-    /*public override void TakeHit()
-    {
-        hp--;
-        if (hp > 0)
-        {
-            LockMove();
-            ChangeState("takeHit");
-            RunAnim();
-        }
-        else Death();
-    }*/
     public void BirdMove()
     {
         ChangeDirection();

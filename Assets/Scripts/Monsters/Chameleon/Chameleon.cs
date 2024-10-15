@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class Chameleon : AttackMonster
+public class Chameleon : RunMonster, IAttackable
 {
     [SerializeField] private float timeAttack;
     private float cooldownAttack;
+
+    public bool canAttack { get ; set ; }
+
     // Start is called before the first frame update
     private void Awake()
     {

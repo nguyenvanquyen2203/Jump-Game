@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Slime : Monster
+public class Slime : RunMonster
 {
     // Start is called before the first frame update
     public PoolCtrl slimeParticalCtrl;
@@ -10,14 +10,17 @@ public class Slime : Monster
         InitMonster();
         cooldown = 1f;
     }
-
+    private void Start()
+    {
+        Move();
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (lockMove != 0)
+        /*if (lockMove != 0)
         {
             Move();
-        }
+        }*/
         if (IsDead()) return;
         if (cooldown > 0f) cooldown -= Time.fixedDeltaTime;
         else

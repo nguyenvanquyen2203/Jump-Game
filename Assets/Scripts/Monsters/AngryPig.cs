@@ -1,21 +1,15 @@
 using UnityEngine;
 
-public class AngryPig : Monster
+public class AngryPig : RunMonster
 {
     // Start is called before the first frame update
     private void Awake()
     {
         InitMonster();
-        //Move();
     }
-
-    // Update is called once per frame
-    void FixedUpdate()
+    private void Start()
     {
-        if (lockMove != 0)
-        {
-            Move();
-        }
+        Move();
     }
     public override void TakeHit()
     {
@@ -31,9 +25,4 @@ public class AngryPig : Monster
         if (hp <= 0) monsterAnimator.SetBool("isDead", true);
         if (hp <= 0) Death();
     }
-    /*public override void ChangeDirection()
-    {
-        base.ChangeDirection();
-        Move();
-    }*/
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FatBird : Monster
+public class FatBird : RunMonster
 {
     private bool isFall;
     private float gravity = -9.8f;
@@ -45,9 +45,5 @@ public class FatBird : Monster
         RunAnim();
         isFall = !isFall;
         velocity = 0f;
-    }
-    protected void Move(Vector2 moveVector)
-    {
-        rb.velocity = moveVector * speed;
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Plant : AttackMonster
+public class Plant : RunMonster, IAttackable
 {
     public GameObject bulletPref;
     public Transform bulletSpawnPoint;
@@ -9,6 +9,9 @@ public class Plant : AttackMonster
     private List<Bullet> bullets = new List<Bullet>();
     [SerializeField] private float timeAttack;
     private float cooldownAttack;
+
+    public bool canAttack { get ; set ; }
+
     // Start is called before the first frame update
     private void Awake()
     {
