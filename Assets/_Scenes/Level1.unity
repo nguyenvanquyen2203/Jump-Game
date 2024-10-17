@@ -24147,6 +24147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterInfo: {fileID: 11400000, guid: 76f0f1391784fd54bbe752aada8601c1, type: 2}
+  speed: 3
 --- !u!114 &414630961540840908
 MonoBehaviour:
   m_ObjectHideFlags: 0
