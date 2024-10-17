@@ -43,7 +43,7 @@ public class Plant : RunMonster, IAttackable
         }
         if (cooldownAttack > 0) cooldownAttack -= Time.deltaTime;
     }
-    public void Attack()
+    public void ShotBullet()
     {
         foreach (Bullet bullet in bullets)
         {

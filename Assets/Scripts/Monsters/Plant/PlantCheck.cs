@@ -7,10 +7,10 @@ public class PlantCheck : MonoBehaviour
     public IAttackable monster;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        monster.canAttack = true;
+        monster.ShotBullet();
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    /*private void OnTriggerExit2D(Collider2D collision)
     {
         monster.canAttack = false;
-    }
+    }*/
 }

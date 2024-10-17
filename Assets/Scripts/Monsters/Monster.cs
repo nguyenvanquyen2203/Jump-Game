@@ -5,9 +5,8 @@ public abstract class Monster : MonoBehaviour
     protected Animator monsterAnimator;
     public MonsterInfo monsterInfo;
     protected Rigidbody2D rb;
-    private string state;
+    private string animState;
     private bool lockState;
-    protected int lockMove;
     protected int hp;
     private bool isDead;
     protected void InitMonster()
@@ -31,11 +30,11 @@ public abstract class Monster : MonoBehaviour
     }
     public void ChangeState(string _state)
     {
-        if (!lockState) state = _state;
+        if (!lockState) animState = _state;
     }
     public void RunAnim()
     {
-        monsterAnimator.Play(state);
+        monsterAnimator.Play(animState);
     }
     public virtual void TakeHit()
     {
@@ -82,10 +81,12 @@ public abstract class Monster : MonoBehaviour
     }
     protected virtual void LockMove()
     {
-        lockMove = 0;
-        //rb.velocity = Vector2.zero;
+
     } 
-    public virtual void UnlockMove() => lockMove = 1;
+    public virtual void UnlockMove()
+    {
+
+    }
     protected void Disable()
     {
         gameObject.SetActive(false);

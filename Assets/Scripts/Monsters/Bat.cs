@@ -58,7 +58,7 @@ public class Bat : FlyingMonster
     private bool MoveToPoint(Vector3 targetPos)
     {
         if ((transform.position - targetPos).sqrMagnitude < .01f) return true;
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.fixedDeltaTime * lockMove);
+        //transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.fixedDeltaTime * lockMove);
         return false;
     }
     protected void ChangeDirection()

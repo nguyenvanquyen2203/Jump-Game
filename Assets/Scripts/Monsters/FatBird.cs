@@ -20,21 +20,18 @@ public class FatBird : RunMonster
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (lockMove != 0)
+        if (isFall)
         {
-            if (isFall)
-            {
-                ChangeState("fall");
-                velocity += gravity * Time.fixedDeltaTime;
-            }
-            else
-            {
-                ChangeState("idle");
-                velocity = speed;
-            }
-            RunAnim();
-            Move(velocity * Vector2.up);
+            ChangeState("fall");
+            velocity += gravity * Time.fixedDeltaTime;
         }
+        else
+        {
+            ChangeState("idle");
+            velocity = speed;
+        }
+        RunAnim();
+        Move(velocity * Vector2.up);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

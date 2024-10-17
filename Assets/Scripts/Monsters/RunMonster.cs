@@ -23,12 +23,10 @@ public abstract class RunMonster : Monster
     }
     protected override void LockMove()
     {
-        base.LockMove();
         base.Move(Vector2.zero);
     }
     public override void UnlockMove()
     {
-        base.UnlockMove();
         Move();
     }
 }
