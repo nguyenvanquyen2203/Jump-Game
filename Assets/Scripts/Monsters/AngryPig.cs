@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class AngryPig : RunMonster
 {
     // Start is called before the first frame update

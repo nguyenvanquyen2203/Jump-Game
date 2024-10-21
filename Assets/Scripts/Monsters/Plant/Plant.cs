@@ -1,16 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Plant : RunMonster, IAttackable
+public class Plant : AttackMonster
 {
     public GameObject bulletPref;
     public Transform bulletSpawnPoint;
     public int numberBullets;
     private List<Bullet> bullets = new List<Bullet>();
-    [SerializeField] private float timeAttack;
-    private float cooldownAttack;
-
-    public bool canAttack { get ; set ; }
 
     // Start is called before the first frame update
     private void Awake()
@@ -28,23 +24,21 @@ public class Plant : RunMonster, IAttackable
         }
         #endregion
 
-        canAttack = false;
         cooldownAttack = 0;     
     }
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        if (cooldownAttack <= 0 && canAttack)
-        {
-            ChangeState("attack");
-            RunAnim();
-            cooldownAttack = timeAttack;
-        }
-        if (cooldownAttack > 0) cooldownAttack -= Time.deltaTime;
+        if (cooldownAttack > 0) cooldownAttack -= Time.fixedDeltaTime;
     }
-    public void ShotBullet()
+    public override void Attack()
     {
+        if (cooldownAttack > 0) return;
+        ChangeState("attack");
+        RunAnim();
+        cooldownAttack = timeAttack;
+
         foreach (Bullet bullet in bullets)
         {
             if (!bullet.gameObject.activeSelf)

@@ -12,15 +12,6 @@ public class BlueBird : RunMonster
         BirdMove();
         Move();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        /*if (lockMove != 0)
-        {
-            Move();
-        }*/
-    }
     public void BirdMove()
     {
         ChangeDirection();

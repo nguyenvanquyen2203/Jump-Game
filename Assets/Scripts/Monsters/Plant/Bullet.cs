@@ -13,7 +13,6 @@ public class Bullet : MonoBehaviour
     }
     private void OnEnable()
     {
-        Invoke(nameof(OnDisable), 5f);
         rb.velocity = new Vector2 (bulletSpeed * direction, 0);
     }
     private void OnTriggerEnter2D(Collider2D collision)

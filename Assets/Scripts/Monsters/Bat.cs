@@ -5,7 +5,7 @@ public class Bat : FlyingMonster
 {
     private Vector3 centerPos;
     [SerializeField] private float restTime;
-    [SerializeField] private Vector2 moveSpace;
+    //[SerializeField] private Vector2 moveSpace;
     private bool lockMove;
     private Vector3 moveVector;
     private float restCountDown;

@@ -7,7 +7,7 @@ public class Chameleon : RunMonster, IAttackable
 
     public bool canAttack { get ; set ; }
 
-    public void ShotBullet()
+    public void Attack()
     {
         if (cooldownAttack <= 0)
         {

@@ -15,7 +15,7 @@ public class MonsterRayCheck : MonoBehaviour
     {
         if (Physics2D.Raycast(box.bounds.center, transform.right * transform.localScale.x * -1f, rayDistance, checkLayer))
         {
-            monster.ShotBullet();
+            monster.Attack();
         }
     }
 }

@@ -5,6 +5,7 @@ public abstract class FlyingMonster : Monster
 {
     protected Vector2 direction;
     protected float speed;
+    [SerializeField] protected Vector2 moveSpace;
     public override void ResetInfo()
     {
         hp = monsterInfo.hp;
