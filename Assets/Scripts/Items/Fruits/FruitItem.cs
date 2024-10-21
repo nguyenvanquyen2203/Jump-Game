@@ -11,13 +11,9 @@ public class FruitItem : Item
     {
         PointManager.Instance.CollectPoint(score);
     }
-    // Start is called before the first frame update
-    private void Awake()
-    {
-        fruitAnim = GetComponent<Animator>();
-    }
     void Start()
     {
+        fruitAnim = GetComponent<Animator>();
         fruitItem = FruitsManager.Instance.GetFruit(nameFruit);
         score = fruitItem.Score;
         fruitAnim.runtimeAnimatorController = fruitItem.animator;

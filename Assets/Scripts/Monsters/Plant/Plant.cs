@@ -39,6 +39,10 @@ public class Plant : AttackMonster
         RunAnim();
         cooldownAttack = timeAttack;
 
+        
+    }
+    public void SpawnBullet()
+    {
         foreach (Bullet bullet in bullets)
         {
             if (!bullet.gameObject.activeSelf)

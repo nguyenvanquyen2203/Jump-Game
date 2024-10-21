@@ -2,10 +2,10 @@ using UnityEngine;
 
 public abstract class BuffItem : MonoBehaviour
 {
-    protected Animator itemAnim;
+    protected CollectionManager collectionManager;
     private void Awake()
     {
-        itemAnim = GetComponent<Animator>();
+        collectionManager = CollectionManager.Instance;
     }
     protected abstract void CollectorAction();
     public void Collect()
@@ -14,13 +14,9 @@ public abstract class BuffItem : MonoBehaviour
         CollectorAction();
         Disable();
     }
-    public void RunAnim(string _state)
-    {
-        itemAnim.Play(_state);
-    }
     private void Disable()
     {
-        CollectionManager.Instance.ActiveFruitCollection(transform.position);
+        collectionManager.ActivePoolCtrl(collectionManager.buffJumpCtrl, transform.position);
         gameObject.SetActive(false);
     }
 }

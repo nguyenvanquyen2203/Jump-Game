@@ -9,11 +9,16 @@ public class CollectionManager : MonoBehaviour
     public PoolCtrl fruitCollect;
     public PoolCtrl boxBreakCtrl;
     public PoolCtrl pieceBreakCtrl;
+    public PoolCtrl buffJumpCtrl;
     private void Awake()
     {
         instance = this;
     }
-    public void ActiveFruitCollection(Vector3 itemPos)
+    public void ActivePoolCtrl(PoolCtrl poolCtrl, Vector3 itemPos)
+    {
+        poolCtrl.ActivePool(itemPos);
+    }
+    /*public void ActiveFruitCollection(Vector3 itemPos)
     {
         fruitCollect.ActivePool(itemPos);
     }
@@ -25,4 +30,8 @@ public class CollectionManager : MonoBehaviour
     {
         pieceBreakCtrl.ActivePool(itemPos);
     }
+    public void ActiveBuffJumpCollection(Vector3 itemPos)
+    {
+        buffJumpCtrl.ActivePool(itemPos);
+    }*/
 }

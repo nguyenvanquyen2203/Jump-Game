@@ -5,14 +5,16 @@ public class Box : MonoBehaviour
     private Animator anim;
     [SerializeField] private GameObject boxItem;
     public int boxHp;
+    private CollectionManager collectionManager;
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        collectionManager = CollectionManager.Instance;
     }
     public void TakeHit()
     {
         boxHp--;
-        if (boxHp <= 0) CollectionManager.Instance.ActiveBoxBreak(transform.position);
+        if (boxHp <= 0) collectionManager.ActivePoolCtrl(collectionManager.boxBreakCtrl, transform.position);
         anim.Play("takeHit");
     }
     public void TakeHitAct()

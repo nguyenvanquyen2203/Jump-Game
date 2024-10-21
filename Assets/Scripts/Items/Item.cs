@@ -2,10 +2,10 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour
 {
-    protected Animator itemAnim;
-    private void Awake()
+    protected CollectionManager collectionManager;
+    protected void Awake()
     {
-        itemAnim = GetComponent<Animator>();
+        collectionManager = CollectionManager.Instance;
     }
     protected abstract void CollectorAction();
     public void Collect()
@@ -14,13 +14,9 @@ public abstract class Item : MonoBehaviour
         CollectorAction();
         Disable();
     }
-    public void RunAnim(string _state)
+    protected virtual void Disable()
     {
-        itemAnim.Play(_state);
-    }
-    private void Disable()
-    {
-        CollectionManager.Instance.ActiveFruitCollection(transform.position);
+        collectionManager.ActivePoolCtrl(collectionManager.fruitCollect, transform.position);
         gameObject.SetActive(false);
     }
 }
