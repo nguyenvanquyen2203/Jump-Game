@@ -22,14 +22,14 @@ TagManager:
   - 
   - Water
   - UI
-  - Ground
+  - 
   - Platform
-  - Monster
+  - 
   - Obstacle
   - Player
   - EnemyCheck
-  - Trap
-  - Item
+  - Partical
+  - 
   - 
   - 
   - MonterCheckWay

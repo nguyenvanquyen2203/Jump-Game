@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 4698311944174213772}
   - component: {fileID: 4698311944174213770}
   - component: {fileID: 2576921220101718368}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: GrassEnvironment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1055,7 +1055,7 @@ GameObject:
   - component: {fileID: 7891479246019490609}
   - component: {fileID: 5535941351131243245}
   - component: {fileID: 7892059682122122619}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: SakuraEnvironment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1671,7 +1671,7 @@ GameObject:
   - component: {fileID: 1952791973960415137}
   - component: {fileID: 3715386388889844294}
   - component: {fileID: 3433269179837101771}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: GroundEnvironment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1946,7 +1946,7 @@ GameObject:
   - component: {fileID: 7294714836302216666}
   - component: {fileID: 1397756054958418875}
   - component: {fileID: 2903139655251399214}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: PlatformEnvironment
   m_TagString: Untagged
   m_Icon: {fileID: 0}

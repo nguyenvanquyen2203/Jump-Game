@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 5204926629466710455}
   - component: {fileID: 5204926629466710456}
   - component: {fileID: 1845633080945209324}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: SpikedBall
   m_TagString: Trap
   m_Icon: {fileID: 0}
