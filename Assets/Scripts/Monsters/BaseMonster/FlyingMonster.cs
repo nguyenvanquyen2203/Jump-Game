@@ -19,7 +19,7 @@ public abstract class FlyingMonster : Monster
     protected virtual void ChangeDirection(Vector2 newDirection)
     {
         transform.localScale = new Vector3(newDirection.x > 0 ? 1 : -1, 1, 1);
-        direction = newDirection;
+        direction = newDirection.normalized;
         Move();
     }
 }

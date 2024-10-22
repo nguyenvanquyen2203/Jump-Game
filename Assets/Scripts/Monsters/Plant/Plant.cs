@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Plant : AttackMonster
+public class Plant : AttackMonster, IShootable
 {
-    public GameObject bulletPref;
+    [field: SerializeField] public GameObject bulletPref { get; set; }
     public Transform bulletSpawnPoint;
     public int numberBullets;
     private List<Bullet> bullets = new List<Bullet>();
@@ -59,7 +59,7 @@ public class Plant : AttackMonster
     public Bullet CreateBullet()
     {
         GameObject bullet = Instantiate(bulletPref, transform);
-        bullet.GetComponent<Bullet>().SetDirection((int)transform.localScale.x * -1);
+        bullet.GetComponent<Bullet>().SetDirection(transform.localScale.x * Vector2.left);
         return bullet.GetComponent<Bullet>();
     }
 }

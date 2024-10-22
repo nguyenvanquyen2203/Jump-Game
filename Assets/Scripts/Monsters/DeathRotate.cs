@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class DeathRotate : MonoBehaviour
 {
-    private Rigidbody2D rb;
     public float rotateSpeed;
     private float rotationSpeed;
     // Start is called before the first frame update

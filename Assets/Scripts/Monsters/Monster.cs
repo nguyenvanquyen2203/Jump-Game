@@ -9,10 +9,30 @@ public abstract class Monster : MonoBehaviour
     private bool lockState;
     protected int hp;
     private bool isDead;
+    private DeathRotate deadRotate;
+    private void Reset()
+    {
+        deadRotate = GetComponent<DeathRotate>();
+        if (deadRotate == null)
+        {
+            deadRotate = gameObject.AddComponent<DeathRotate>();
+            deadRotate.rotateSpeed = 90f;
+        }
+    }
     protected void InitMonster()
     {
         monsterAnimator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        if (rb == null)
+        {
+            rb = gameObject.AddComponent<Rigidbody2D>();
+        }
+        deadRotate = GetComponent<DeathRotate>();
+        if (deadRotate == null)
+        {
+            deadRotate = gameObject.AddComponent<DeathRotate>();
+            deadRotate.rotateSpeed = 90f;
+        }
         ResetInfo();
     }
     public virtual void ResetInfo()
@@ -22,10 +42,12 @@ public abstract class Monster : MonoBehaviour
         isDead = false;
 
         gameObject.GetComponent<BoxCollider2D>().enabled = true;
+
+        //Set default RB
         rb.bodyType = RigidbodyType2D.Kinematic;
 
         #region Rotate GO
-        GetComponent<DeathRotate>().enabled = false;
+        deadRotate.enabled = false;
         #endregion
     }
     public void ChangeState(string _state)
@@ -41,6 +63,7 @@ public abstract class Monster : MonoBehaviour
         hp--;
         if (hp >= 0)
         {
+            UnlockState();
             LockMove();
             ChangeState("takeHit");
             LockState();

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private int direction;
+    private Vector2 direction;
     private Rigidbody2D rb;
     [SerializeField] private float bulletSpeed;
     private CollectionManager collectionManager;
@@ -10,12 +10,12 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         collectionManager = CollectionManager.Instance;
-        direction = 1;
+        direction = Vector2.right;
         bulletSpeed = 5f;
     }
     private void OnEnable()
     {
-        rb.velocity = new Vector2 (bulletSpeed * direction, 0);
+        rb.velocity = direction * bulletSpeed;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
         collectionManager.ActivePoolCtrl(collectionManager.pieceBreakCtrl, transform.position);
         gameObject.SetActive(false);
     }
-    public void SetDirection(int _dir) => direction = _dir;
+    public void SetDirection(Vector2 _dir) => direction = _dir;
     private void OnDisable()
     {
         gameObject.SetActive(false);
