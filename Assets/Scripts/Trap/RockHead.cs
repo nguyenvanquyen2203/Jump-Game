@@ -59,7 +59,12 @@ public class RockHead : Subject, IMovePlatform
     }
     private bool IsContact()
     {
-        return Physics2D.BoxCast(box.bounds.center, box.bounds.size, 0f, dir, distanceCheck, mask);
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(box.bounds.center, box.bounds.size, 0f, dir, distanceCheck, mask);
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider.CompareTag("Ground")) return true; 
+        }
+        return false;
     }
 
     public void ChangeDirection()

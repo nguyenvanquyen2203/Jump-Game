@@ -37,7 +37,6 @@ public class Turtle : AttackMonster
     {
         ChangeState("spikeIn");
         gameObject.tag = "Monster";
-        gameObject.layer = LayerMask.NameToLayer("Monster");
         cooldownAttack = timeAttack;
     }
 
@@ -45,7 +44,6 @@ public class Turtle : AttackMonster
     {
         ChangeState("spikeOut");
         gameObject.tag = "Trap";
-        gameObject.layer = LayerMask.NameToLayer("Trap");
         cooldownAttack = timeAttack * 2/3f;
     }
     public override void TakeHit()

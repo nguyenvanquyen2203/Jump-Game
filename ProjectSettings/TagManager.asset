@@ -4,17 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - SpawnPoint
-  - HitBox
   - Monster
-  - TargetPoint
-  - Environment
-  - GroundPlatform
-  - Platform/GroundPlatform
-  - Platform/Box
   - Trap
   - Item
-  - Wall
+  - Box
+  - Platform/GroundPlatform
+  - Ground
   layers:
   - Default
   - TransparentFX

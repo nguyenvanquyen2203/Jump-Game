@@ -258,4 +258,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chainPrefab: {fileID: 5204926628900840764}
   distanceChain: 0.5
-  platform: {fileID: 5204926629466710455}
+  lastChain: {fileID: 5204926629466710455}

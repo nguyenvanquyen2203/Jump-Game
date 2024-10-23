@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7311576901764064018}
   - component: {fileID: 7311576901764064023}
   - component: {fileID: 7311576901764064021}
-  - component: {fileID: 7311576901764064019}
   - component: {fileID: 7311576901764064016}
   m_Layer: 7
   m_Name: Platform
@@ -130,8 +129,7 @@ MonoBehaviour:
   points:
   - {fileID: 7311576902664805657}
   - {fileID: 7311576902551374080}
-  speed: 3
-  direction: 1
+  <speed>k__BackingField: 3
 --- !u!114 &7311576901764064021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,18 +140,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dec88dd036b55dc4fac9bbb1ad539244, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7311576901764064019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7311576901764064025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d14699e3e2cfea74a87bf48491d0b972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!95 &7311576901764064016

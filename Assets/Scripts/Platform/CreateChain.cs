@@ -4,12 +4,12 @@ public class CreateChain : MonoBehaviour
 {
     public GameObject chainPrefab;
     public float distanceChain;
-    public Transform platform;
+    public Transform lastChain;
     private Vector3 platformPos;
     private Vector3 distanceVector;
     private void Awake()
     {
-        platformPos = platform.localPosition;
+        platformPos = lastChain.localPosition;
         Vector3 chainPos = transform.position;
         distanceVector = platformPos.normalized * distanceChain;
         for (int i = 1; i <= platformPos.magnitude / distanceChain; i++)

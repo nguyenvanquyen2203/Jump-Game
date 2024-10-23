@@ -11,6 +11,7 @@ public class FatBird : Monster
     private void Awake()
     {
         InitMonster();
+        hp = monsterInfo.hp;
         rb.bodyType = RigidbodyType2D.Dynamic;
     }
     void Start()

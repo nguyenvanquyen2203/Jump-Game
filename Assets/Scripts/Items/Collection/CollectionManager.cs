@@ -9,6 +9,7 @@ public class CollectionManager : MonoBehaviour
     public PoolCtrl fruitCollect;
     public PoolCtrl boxBreakCtrl;
     public PoolCtrl pieceBreakCtrl;
+    public PoolCtrl beePieceBreakCtrl;
     public PoolCtrl buffJumpCtrl;
     private void Awake()
     {

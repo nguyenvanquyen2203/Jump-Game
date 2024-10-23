@@ -215,6 +215,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftBottomLimit: {x: 0, y: 0}
-  rightTopLimit: {x: 0, y: 0}
+  rightTopLimit: {x: 28, y: 0}
   positionOffset: {x: 0, y: 0, z: -10}
   smoothTime: 0.3

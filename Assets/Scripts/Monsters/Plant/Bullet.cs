@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private float bulletSpeed;
     private CollectionManager collectionManager;
+    private PoolCtrl pieceBreakCtrl;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -20,7 +21,7 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) collision.GetComponent<PlayerHealth>().Hurt();
-        collectionManager.ActivePoolCtrl(collectionManager.pieceBreakCtrl, transform.position);
+        collectionManager.ActivePoolCtrl(pieceBreakCtrl, transform.position);
         gameObject.SetActive(false);
     }
     public void SetDirection(Vector2 _dir) => direction = _dir;
@@ -28,4 +29,5 @@ public class Bullet : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+    public void SetPieceBreakCtrl(PoolCtrl _pieceBreakCtrl) => pieceBreakCtrl = _pieceBreakCtrl;
 }
