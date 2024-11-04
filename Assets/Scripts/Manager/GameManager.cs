@@ -22,10 +22,7 @@ public class GameManager : MonoBehaviour
             fakePlayer = GameObject.Find("FakePlayer")?.GetComponent<FakePlayer>();
             if (fakePlayer == null) fakePlayer = Instantiate(fakePlayerObj).GetComponent<FakePlayer>();
         }
-        if (playerObj == null)
-        {
-            playerObj = GameObject.FindGameObjectWithTag("Player");
-        }
+        playerObj = GameObject.FindGameObjectWithTag("Player");
         if (spawnPoint == null)
         {
             spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint")?.transform;

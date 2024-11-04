@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4320623746810261072}
   - component: {fileID: 4320623746810261073}
   - component: {fileID: 4320623746810261078}
-  - component: {fileID: 5504571986184765942}
   m_Layer: 8
   m_Name: Bat
   m_TagString: Monster
@@ -122,10 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24489acd237a95542b4ffe70f3e7ea45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 2
-  speed: 2
-  restTime: 5
+  monsterInfo: {fileID: 0}
   moveSpace: {x: 0, y: 0}
+  restTime: 5
 --- !u!61 &4320623746810261073
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -173,16 +171,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5504571986184765942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4320623746810261084}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f12c1048a902d84d8a9756f4f1eca26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateSpeed: 0

@@ -113,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
     public void Attack()
     {
         AudioManager.Instance.PlaySFX("Hit");
+        jumped = false;
         m_rb.velocity = new Vector2(m_rb.velocity.x, Mathf.Sqrt(2 * m_jumpHeight * 3 / 4 * 9.81f * 4));
     }
     public void SetBonus(Vector2 _bonusVector)
