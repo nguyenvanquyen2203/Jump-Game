@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BlueBird : RunMonster
@@ -9,12 +10,18 @@ public class BlueBird : RunMonster
     }
     void Start()
     {
-        BirdMove();
+        StartCoroutine(BirdMove());
         Move();
     }
-    public void BirdMove()
+    private IEnumerator BirdMove()
     {
         ChangeDirection();
-        Invoke(nameof(BirdMove), 3f);
+        yield return new WaitForSeconds(3f);
+        StartCoroutine(BirdMove());
+    }
+    protected override void Death()
+    {
+        base.Death();
+        StopAllCoroutines();
     }
 }

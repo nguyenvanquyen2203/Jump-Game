@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -12,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        lifeText = GameObject.Find("LifeText").GetComponent<TextMeshProUGUI>();
     }
     private void Start()
     {

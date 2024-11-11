@@ -16,7 +16,7 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        jump = false;
+        jump = false; 
         horizontal = Input.GetAxisRaw("Horizontal");
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) jump = true;
     }

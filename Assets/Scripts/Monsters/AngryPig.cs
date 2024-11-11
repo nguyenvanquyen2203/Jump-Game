@@ -11,16 +11,7 @@ public class AngryPig : RunMonster
     }
     public override void TakeHit()
     {
-        hp--;
-        if (hp >= 0)
-        {
-            LockMove();
-            ChangeState("takeHit");
-            LockState();
-            RunAnim();
-            speed *= 1.5f;
-        }
-        if (hp <= 0) monsterAnimator.SetBool("isDead", true);
-        if (hp <= 0) Death();
+        base.TakeHit();
+        speed *= 1.5f;
     }
 }

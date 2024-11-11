@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Monster : MonoBehaviour
@@ -16,6 +17,7 @@ public abstract class Monster : MonoBehaviour
         if (deadRotate == null)
         {
             deadRotate = gameObject.AddComponent<DeathRotate>();
+            deadRotate.enabled = false;
             deadRotate.rotateSpeed = 90f;
         }
     }
@@ -80,7 +82,7 @@ public abstract class Monster : MonoBehaviour
             UnlockState();
         } 
     }
-    protected void Death()
+    protected virtual void Death()
     {
         LockState();
         isDead = true;
@@ -89,7 +91,7 @@ public abstract class Monster : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Dynamic;
 
         #region Rotate GO
-        GetComponent<DeathRotate>().enabled = true;
+        deadRotate.enabled = true;
         #endregion
 
         rb.AddForce(Vector2.up * 10f + Vector2.right * (rb.velocity.x * .75f), ForceMode2D.Impulse);
