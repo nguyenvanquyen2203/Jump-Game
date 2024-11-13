@@ -25038,7 +25038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98be103b9a383984082e58ac5f4ca5cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameFruit: Banana
+  nameFruit: Apple
 --- !u!61 &5093410911226996927
 BoxCollider2D:
   m_ObjectHideFlags: 0

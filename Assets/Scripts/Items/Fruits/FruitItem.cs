@@ -9,13 +9,12 @@ public class FruitItem : Item
 
     protected override void CollectorAction()
     {
-        PointManager.Instance.CollectPoint(score);
+        FruitCoinManager.Instance.CollectCoin(nameFruit);
     }
     void Start()
     {
         fruitAnim = GetComponent<Animator>();
         fruitItem = FruitsManager.Instance.GetFruit(nameFruit);
-        score = fruitItem.Score;
         fruitAnim.runtimeAnimatorController = fruitItem.animator;
     }
 }

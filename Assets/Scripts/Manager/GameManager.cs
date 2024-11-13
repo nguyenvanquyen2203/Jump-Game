@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
             }
         } 
         else AudioManager.Instance.PlaySFX("GameOver");
-        PointManager.Instance.UpdatePoint();
+        FruitCoinManager.Instance.UpdateFruitCoin();
         playerObj.SetActive(isWin);
         InputManager.Instance.DisableInput();
         PauseMenu.Instance.GameOver(isWin);
