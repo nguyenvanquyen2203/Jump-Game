@@ -14,7 +14,7 @@ public class FruitItem : Item
     void Start()
     {
         fruitAnim = GetComponent<Animator>();
-        fruitItem = FruitsManager.Instance.GetFruit(nameFruit);
+        fruitItem = FruitData.Instance.GetFruit(nameFruit);
         fruitAnim.runtimeAnimatorController = fruitItem.animator;
     }
 }

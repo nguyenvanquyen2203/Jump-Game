@@ -43,8 +43,7 @@ public class ChoosePlayer : MonoBehaviour
         if (selectedIndex < 0) selectedIndex = characterDB.CharacterCount - 1;
         UpdateCharacter(selectedIndex);
     }
-    public void OnDisable() => Save();
-
+    public void ChooseSkin() => Save();
     private void Save() => PlayerPrefs.SetInt("selectedIndex", selectedIndex);
     private void Load() => selectedIndex = PlayerPrefs.GetInt("selectedIndex");
     public void BuySkin()

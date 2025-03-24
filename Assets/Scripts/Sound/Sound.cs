@@ -12,13 +12,13 @@ public class Sound
     public void PlayMusic(float _volumn)
     {
         src.volume = volumn * _volumn;
-        src.pitch = pitch;
         src.Play();
     }
     public void InitSrc(AudioSource _src)
     {
         src = _src;
         src.clip = clip;
+        src.pitch = pitch;
     }
     public void ChangeVolumn(float _volumn) => src.volume = _volumn * volumn; 
     public void LoopMusic(bool loop) => src.loop = loop;

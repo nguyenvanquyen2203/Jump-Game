@@ -1,9 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public InputManager playerInput;
+    private InputManager playerInput;
+    private InputAction movement;
+    private InputAction jumpAct;
     private Rigidbody2D m_rb;
     private Animator m_animator;
     private BoxCollider2D m_collider;
@@ -20,17 +23,26 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask GroundLayer;
     [SerializeField] private float m_speed;
     [SerializeField] private float m_jumpHeight;
+    private float multiGraviry;
     private Vector2 bonusVector;
     // Start is called before the first frame update
-    private void Reset()
-    {
-        playerInput = GameObject.Find("InputManager").GetComponent<InputManager>();
-    }
     private void Awake()
     {
+        playerInput = new InputManager();
+        movement = playerInput.Movement.LeftRight;
+        jumpAct = playerInput.Movement.Jump;
         m_animator = GetComponent<Animator>();
         m_rb = GetComponent<Rigidbody2D>();
         m_collider = GetComponent<BoxCollider2D>();
+    }
+    private void OnEnable()
+    {
+        jumpAct.performed += JumpActions_performed;
+        playerInput.Enable();
+    }
+    private void OnDisable()
+    {
+        jumpAct.performed -= JumpActions_performed;
     }
     void Start()
     {
@@ -39,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         state = PlayerAnim.PlayerAnimIdle;
         jumped = false;
         isGrounded = true;
+        multiGraviry = m_rb.gravityScale;
     }
 
     // Update is called once per frame
@@ -55,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         else isGrounded = false;
-        float horizontal = playerInput.GetHorizontal();
+        float horizontal = movement.ReadValue<float>();
         if (bonusVector.y < 0f) moveVector = new Vector2(horizontal * m_speed, 0f);
         else moveVector = new Vector2(horizontal * m_speed, m_rb.velocity.y - bonusVector.y);
         if (isGrounded && horizontal != 0f && couter >= delayGroundDust)
@@ -69,21 +82,6 @@ public class PlayerMovement : MonoBehaviour
         if (horizontal < 0f) transform.localScale = new Vector3(-1f, 1f, 1f);
         #endregion
 
-        #region Jump Logic
-        if (playerInput.GetJump())
-        {
-            if (isGrounded)
-            {
-                jumped = false;
-                Jump();
-            }
-            else if (!jumped)
-            {
-                jumped = true;
-                Jump();
-            }
-        }
-        #endregion
         m_rb.velocity = moveVector + bonusVector;
         #region Change Player Anim State
         if (horizontal == 0) state = PlayerAnim.PlayerAnimIdle;
@@ -104,7 +102,21 @@ public class PlayerMovement : MonoBehaviour
     public void Jump()
     {
         AudioManager.Instance.PlaySFX("Jump");
-        moveVector = new Vector2(m_rb.velocity.x, Mathf.Sqrt(2 * m_jumpHeight * 9.81f * 4));
+        moveVector = new Vector2(m_rb.velocity.x, Mathf.Sqrt(2 * m_jumpHeight * 9.81f * multiGraviry));
+        m_rb.velocity = moveVector + bonusVector;
+    }
+    private void JumpActions_performed(InputAction.CallbackContext obj)
+    {
+        if (isGrounded)
+        {
+            jumped = false;
+            Jump();
+        }
+        else if (!jumped)
+        {
+            jumped = true;
+            Jump();
+        }
     }
     public bool IsGround()
     {
@@ -114,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("Hit");
         jumped = false;
-        m_rb.velocity = new Vector2(m_rb.velocity.x, Mathf.Sqrt(2 * m_jumpHeight * 3 / 4 * 9.81f * 4));
+        m_rb.velocity = new Vector2(m_rb.velocity.x, Mathf.Sqrt(2 * m_jumpHeight * 2/3 * 9.81f * multiGraviry));
     }
     public void SetBonus(Vector2 _bonusVector)
     {

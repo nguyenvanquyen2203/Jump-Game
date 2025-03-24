@@ -1,19 +1,19 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneInteractable : MonoBehaviour
+public static class SceneInteractable
 {
-    public void LoadNextScene()
+    public static void LoadNextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    public void LoadScene(int sceneIndex)
+    public static void LoadScene(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);
     }
-    public void Reload()
+    public static void Reload()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    public int GetIndexScene() => SceneManager.GetActiveScene().buildIndex;
+    public static int GetIndexScene() => SceneManager.GetActiveScene().buildIndex;
 }

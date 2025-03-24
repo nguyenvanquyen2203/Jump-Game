@@ -4,27 +4,27 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
     public int levelUnlock { get; private set; }
-    public GameObject[] levelsBtn;
+    public Button[] levelsBtn;
     // Start is called before the first frame update
     private void Awake()
     {
         if (PlayerPrefs.HasKey("LevelUnlock")) levelUnlock = PlayerPrefs.GetInt("LevelUnlock");
         else levelUnlock = 1;
+        levelUnlock = 1;
     }
     void Start()
     {
         for (int i = 0; i < levelsBtn.Length; i++)
         {
-            Transform lockPanel = levelsBtn[i].transform.Find("LvLockPanel");
             if (levelUnlock <= i)
             {
-                lockPanel.gameObject.SetActive(true);
-                levelsBtn[i].GetComponent<Button>().enabled = false;
+                levelsBtn[i].GetComponent<Image>().color = new Color(255, 255, 255, 128);
+                levelsBtn[i].interactable = false;
             }
             else
             {
-                lockPanel.gameObject.SetActive(false);
-                levelsBtn[i].GetComponent<Button>().enabled = true;
+                levelsBtn[i].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+                levelsBtn[i].interactable= true;
             }
         }
     }

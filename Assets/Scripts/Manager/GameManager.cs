@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         if (isWin)
         {
             AudioManager.Instance.PlaySFX("WinGame");
-            if (PauseMenu.Instance.GetIndexScene() == levelUnlock)
+            if (SceneInteractable.GetIndexScene() == levelUnlock)
             {
                 levelUnlock++;
                 PlayerPrefs.SetInt("LevelUnlock", levelUnlock);
@@ -56,7 +56,8 @@ public class GameManager : MonoBehaviour
         else AudioManager.Instance.PlaySFX("GameOver");
         FruitCoinManager.Instance.UpdateFruitCoin();
         playerObj.SetActive(isWin);
-        InputManager.Instance.DisableInput();
+        Debug.Log("Fix Input");
+        //InputManager.Instance.DisableInput();
         PauseMenu.Instance.GameOver(isWin);
     }
     public void Appear()
