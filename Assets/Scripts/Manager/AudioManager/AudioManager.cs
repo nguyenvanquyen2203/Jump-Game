@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
     }
     void Start()
     {
-        PlayMusic("Background");
+        //PlayMusic("Background");
     }
     public void PlaySFX(string name)
     {

@@ -5,20 +5,20 @@ using UnityEngine.UI;
 public class GameMenu : MonoBehaviour
 {
     public Image wdBGp;
-    private void Awake()
+    private void Start()
     {
-        
+        AudioManager.Instance.PlayMusic("Menu");
     }
-    public void OpenPanel(GameObject panel)
+    public void OpenPanel(MenuPanel panel)
     {
-        panel.SetActive(true);
+        panel.gameObject.SetActive(true);
         LeanTween.value(gameObject, (value) => { wdBGp.color = value; }, SomeColor.black(0), SomeColor.black(.5f), 1).setEase(LeanTweenType.easeOutQuad);
-        panel.LeanScale(Vector2.one, .8f);
+        panel.gameObject.LeanScale(Vector2.one, .8f).setOnComplete(panel.EnableAction);
     }
 
-    public void ClosePanel(GameObject panel) 
+    public void ClosePanel(MenuPanel panel) 
     {
         LeanTween.value(gameObject, (value) => { wdBGp.color = value; }, SomeColor.black(.5f), SomeColor.black(0f), .7f).setEase(LeanTweenType.easeOutQuad);
-        panel.LeanScale(Vector2.zero, .5f).setEaseInBack().setOnComplete(() => { panel.SetActive(false); });
+        panel.gameObject.LeanScale(Vector2.zero, .5f).setEaseInBack().setOnComplete(() => { panel.gameObject.SetActive(false); panel.DisableAction(); });
     }
 }

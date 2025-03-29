@@ -5,23 +5,19 @@ using UnityEngine.UI;
 public class ChoosePlayer : MonoBehaviour
 {
     private int selectedIndex = 0;
-    private SkinManager skinManager;
     private CoinManager coinManager;
     public Image characterImg;
-    public Image lockImg;
     public TextMeshProUGUI characterText;
     public CharacterDB characterDB;
     public Button chooseBtn;
     public Button buyBtn;
     private void Awake()
     {
-        skinManager = GetComponent<SkinManager>();
         coinManager = GetComponent<CoinManager>();
     }
     private void Start()
     {
-        if (!PlayerPrefs.HasKey("selectedIndex")) selectedIndex = 0;
-        else Load();
+        selectedIndex = characterDB.indexSkin;
         UpdateCharacter(selectedIndex);
     }
     private void UpdateCharacter(int _selectedIndex)
@@ -44,30 +40,29 @@ public class ChoosePlayer : MonoBehaviour
         UpdateCharacter(selectedIndex);
     }
     public void ChooseSkin() => Save();
-    private void Save() => PlayerPrefs.SetInt("selectedIndex", selectedIndex);
-    private void Load() => selectedIndex = PlayerPrefs.GetInt("selectedIndex");
+    private void Save() => characterDB.indexSkin = selectedIndex;
     public void BuySkin()
     {
-        int price = skinManager.GetPriceSkin(characterDB.GetCharacter(selectedIndex).characterName.Replace(" ", ""));
+        int price = characterDB.GetCharacter(selectedIndex).price;
         if (!coinManager.SpendCoin(price)) return;
-        skinManager.BuySkin(characterDB.GetCharacter(selectedIndex).characterName.Replace(" ", ""));
-        lockImg.gameObject.SetActive(false);
+        characterDB.BuySkin(selectedIndex);
+        UpdateCharacter(selectedIndex);
         UpdateCharacterAction();
     }
     private void UpdateCharacterAction()
     {
-        int priceSkin = skinManager.GetPriceSkin(characterDB.GetCharacter(selectedIndex).characterName.Replace(" ", ""));
+        int priceSkin = characterDB.GetCharacter(selectedIndex).price;
+        chooseBtn.interactable = priceSkin <= 0;
         if (priceSkin <= 0)
         {
-            lockImg.gameObject.SetActive(false);
             buyBtn.gameObject.SetActive(false);
             chooseBtn.gameObject.SetActive(true);
         }
         else
         {
-            lockImg.gameObject.SetActive(true);
             buyBtn.gameObject.SetActive(true);
-            buyBtn.GetComponentInChildren<TextMeshProUGUI>().text = "- " + priceSkin;
+            characterText.text = "- " + priceSkin;
+            buyBtn.interactable = coinManager.GetCoin() >= priceSkin;
         }
     }
 }

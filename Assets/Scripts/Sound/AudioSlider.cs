@@ -22,8 +22,8 @@ public class AudioSlider : MonoBehaviour
     }
     private void OnEnable()
     {
-        audioSlider.value = volumn;
         volumn = AudioManager.Instance.GetVolumn(audioType);
+        audioSlider.value = volumn;
         UpdateUI();
     }
     private void Quiet()
@@ -46,5 +46,6 @@ public class AudioSlider : MonoBehaviour
             Quiet();
         }
         else Play();
+        AudioManager.Instance.SetVolumn(volumn, audioType);
     }
 }

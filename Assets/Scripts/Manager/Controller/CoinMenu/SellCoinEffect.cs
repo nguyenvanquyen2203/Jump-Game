@@ -25,7 +25,7 @@ public class SellCoinEffect : MonoBehaviour
         txt.color = color;
         txt.text = "+ " + coinValue;
         LeanTween.value(gameObject, (value) => { txt.color = value; }, txt.color, noneColor, 1).setEase(LeanTweenType.easeOutQuad).setOnComplete(() => { 
-            coinManager.AddTxt(this);
+            //coinManager.AddTxt(this);
             gameObject.SetActive(false); 
         });
     }

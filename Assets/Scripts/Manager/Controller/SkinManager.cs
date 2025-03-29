@@ -10,10 +10,4 @@ public class SkinManager : MonoBehaviour
     {
         PlayerPrefs.SetInt(nameSkin, 0);
     }
-    private void Start()
-    {
-        /*PlayerPrefs.SetInt("NinjaFrog", 2);
-        PlayerPrefs.SetInt("PinkMan", 100);
-        PlayerPrefs.SetInt("VirtualGuy", 200);*/
-    }
 }
