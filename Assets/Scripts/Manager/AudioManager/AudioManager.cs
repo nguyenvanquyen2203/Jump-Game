@@ -6,9 +6,8 @@ public class AudioManager : MonoBehaviour
     private static AudioManager instance;
     public static AudioManager Instance { get { return instance; } }
     public AudioData audioData;
-    public Sound[] musicSounds;
-    public Sound[] SFXSounds;
-    private AudioSource musicSound;
+    public MusicSound musicSounds;
+    public SFXSound[] SFXSounds;
     public enum Audio_Type
     {
         Music,
@@ -28,27 +27,24 @@ public class AudioManager : MonoBehaviour
             AudioSource src = gameObject.AddComponent<AudioSource>();
             s.InitSrc(src);
         }*/
-        musicSound = gameObject.AddComponent<AudioSource>();
-        foreach (Sound s in SFXSounds)
+        AudioSource temp = gameObject.AddComponent<AudioSource>();
+        musicSounds.InitSrc(temp);
+        musicSounds.SetVolumn(audioData.musicVolumn);
+        foreach (SFXSound s in SFXSounds)
         {
             AudioSource src = gameObject.AddComponent<AudioSource>();
             s.InitSrc(src);
+            s.SetVolumn(audioData.SFXVolumn);
         }
     }
     public void PlaySFX(string name)
     {
-        Sound sound = Array.Find(SFXSounds, s => s.name == name);
-        sound.LoopMusic(false);
-        sound.PlayMusic(audioData.SFXVolumn);
+        SFXSound sound = Array.Find(SFXSounds, s => s.name == name);
+        sound.PlayMusic();
     }
     public void PlayMusic(string name)
-    {
-        Sound sound = Array.Find(musicSounds, s => s.name == name);
-        musicSound.loop = true;
-        musicSound.clip = sound.clip;
-        musicSound.pitch = sound.pitch;
-        musicSound.volume =  audioData.musicVolumn * sound.volumn;
-        musicSound.Play();
+    { 
+        musicSounds.PlayMusic(name);
     }
     public void SetVolumn(float _volumn, Audio_Type type)
     {
@@ -58,12 +54,12 @@ public class AudioManager : MonoBehaviour
     private void SetMusicVol(float _volumn)
     {
         audioData.musicVolumn = _volumn;
-        foreach (Sound s in musicSounds) s.ChangeVolumn(_volumn);
+        musicSounds.SetVolumn(_volumn);
     }
     private void SetSFXVol(float _volumn)
     {
         audioData.SFXVolumn = _volumn;
-        foreach (Sound s in SFXSounds) s.ChangeVolumn(_volumn);
+        foreach (SFXSound s in SFXSounds) s.SetVolumn(_volumn);
     }
     public float GetVolumn(Audio_Type type)
     {

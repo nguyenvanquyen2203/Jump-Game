@@ -4751,14 +4751,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioData: {fileID: 11400000, guid: 6ffb34c7075dd624a8a3b31082fd9830, type: 2}
   musicSounds:
-  - name: Background
-    clip: {fileID: 8300000, guid: 475f4837af487ce4a9e68bb227455e4c, type: 3}
-    volumn: 0.3
-    pitch: 1
-  - name: Menu
-    clip: {fileID: 8300000, guid: 47f45ef7b5767674393cc401fc325705, type: 3}
-    volumn: 0.3
-    pitch: 1
+    musics:
+    - name: Background
+      clip: {fileID: 8300000, guid: 475f4837af487ce4a9e68bb227455e4c, type: 3}
+      volumn: 1
+      pitch: 1
+    - name: Menu
+      clip: {fileID: 8300000, guid: 47f45ef7b5767674393cc401fc325705, type: 3}
+      volumn: 1
+      pitch: 1
   SFXSounds:
   - name: Death
     clip: {fileID: 8300000, guid: cabfae866cab347928b74b7d0ca6bfa9, type: 3}
