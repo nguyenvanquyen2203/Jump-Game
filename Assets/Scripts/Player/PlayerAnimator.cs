@@ -4,8 +4,6 @@ using UnityEngine;
 public class PlayerAnimator : MonoBehaviour
 {
     private Animator m_animator;
-    public List<AnimatorOverrideController> animators;
-
     // Start is called before the first frame update
     private void Awake()
     {
@@ -13,11 +11,6 @@ public class PlayerAnimator : MonoBehaviour
     }
     void Start()
     {
-        m_animator.runtimeAnimatorController = animators[GetCharacterIndex()];
-    }
-    public int GetCharacterIndex()
-    {
-        if (!PlayerPrefs.HasKey("selectedIndex")) return 0;
-        return PlayerPrefs.GetInt("selectedIndex");
+        m_animator.runtimeAnimatorController = SkinManager.Instance.GetAnimator();
     }
 }

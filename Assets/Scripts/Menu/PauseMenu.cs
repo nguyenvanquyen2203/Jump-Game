@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     private static PauseMenu instance;
     public static PauseMenu Instance { get { return instance; } }
+    private InputAction pauseInput;
     private bool isPause;
     private bool isOver;
     public Image bG;
@@ -19,6 +22,8 @@ public class PauseMenu : MonoBehaviour
     }
     void Start()
     {
+        pauseInput = InputCtrl.Instance.GetInput().Control.Exit;
+        pauseInput.performed += ExitAct;
         Time.timeScale = 1.0f;
         isOver = false;
         isPause = false;
@@ -26,14 +31,10 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.transform.localScale = Vector2.zero;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ExitAct(InputAction.CallbackContext obj)
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isOver)
-        {
-            if (!isPause) PauseGame();
-            else ResumeGame();
-        }
+        if (!isPause) PauseGame();
+        else ResumeGame();
     }
     public void GameOver(bool _isWin)
     {
@@ -49,6 +50,7 @@ public class PauseMenu : MonoBehaviour
             lockPanel.SetActive(true);
         }
     }
+    
     public void PauseGame()
     {
         isPause = true;

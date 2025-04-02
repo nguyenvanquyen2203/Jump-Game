@@ -16,8 +16,12 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.Instance.PlayMusic("Background");
         levelUnlock = PlayerPrefs.GetInt("LevelUnlock");
-        if (fakePlayer == null)
+        //fakePlayer = GameObject.Find("FakePlayer")?.GetComponent<FakePlayer>();
+        playerObj = GameObject.FindGameObjectWithTag("Player");
+        playerObj.transform.position = spawnPoint.position;
+        /*if (fakePlayer == null)
         {
             fakePlayer = GameObject.Find("FakePlayer")?.GetComponent<FakePlayer>();
             if (fakePlayer == null) fakePlayer = Instantiate(fakePlayerObj).GetComponent<FakePlayer>();
@@ -33,7 +37,7 @@ public class GameManager : MonoBehaviour
                 spawnPoint.tag = "SpawnPoint";
             } 
         }
-        else playerObj.transform.position = spawnPoint.position;
+        else playerObj.transform.position = spawnPoint.position;*/
     }
     public void Death()
     {

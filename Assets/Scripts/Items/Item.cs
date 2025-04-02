@@ -16,7 +16,7 @@ public abstract class Item : MonoBehaviour
     }
     protected virtual void Disable()
     {
-        collectionManager.ActivePoolCtrl(collectionManager.fruitCollect, transform.position);
+        collectionManager.ActivePoolCtrl(collectionManager.itemCollect, transform.position);
         gameObject.SetActive(false);
     }
 }

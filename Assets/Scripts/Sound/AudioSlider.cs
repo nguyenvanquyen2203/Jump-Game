@@ -16,10 +16,6 @@ public class AudioSlider : MonoBehaviour
     {
         audioSlider = GetComponent<Slider>();
     }
-    void Start()
-    {
-        
-    }
     private void OnEnable()
     {
         volumn = AudioManager.Instance.GetVolumn(audioType);

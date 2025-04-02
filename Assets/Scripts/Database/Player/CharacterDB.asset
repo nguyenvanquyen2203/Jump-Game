@@ -16,13 +16,17 @@ MonoBehaviour:
   characters:
   - characterName: Mask Dude
     characterSprite: {fileID: -6367560908665664636, guid: 3750f45c844123341b9a777a96cb1eca, type: 3}
+    animator: {fileID: 22100000, guid: 909c8f03868c2864098b1a873d635ea8, type: 2}
     price: 0
   - characterName: Ninja Frog
     characterSprite: {fileID: -6367560908665664636, guid: cd947491a13509945aa1b644f9db3ef2, type: 3}
+    animator: {fileID: 22100000, guid: 58f9db7df05002c4dae02c389b347ae8, type: 2}
     price: 10
   - characterName: Pink Man
     characterSprite: {fileID: -6367560908665664636, guid: d348dff3819df794186a80cb95777629, type: 3}
+    animator: {fileID: 22100000, guid: 6c9d63e089e01c647a1308e36c7ddad3, type: 2}
     price: 50
   - characterName: Virtual Guy
     characterSprite: {fileID: -6367560908665664636, guid: 40de9a8703e2e5a47882b0b86451c741, type: 3}
+    animator: {fileID: 22100000, guid: cc5e36e3a011c1d4c90ef3caad431849, type: 2}
     price: 200

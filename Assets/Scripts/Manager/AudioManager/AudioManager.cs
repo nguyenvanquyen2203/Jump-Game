@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     public AudioData audioData;
     public Sound[] musicSounds;
     public Sound[] SFXSounds;
+    private AudioSource musicSound;
     public enum Audio_Type
     {
         Music,
@@ -22,20 +23,17 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-        foreach (Sound s in musicSounds)
+        /*foreach (Sound s in musicSounds)
         {
             AudioSource src = gameObject.AddComponent<AudioSource>();
             s.InitSrc(src);
-        }
+        }*/
+        musicSound = gameObject.AddComponent<AudioSource>();
         foreach (Sound s in SFXSounds)
         {
             AudioSource src = gameObject.AddComponent<AudioSource>();
             s.InitSrc(src);
         }
-    }
-    void Start()
-    {
-        //PlayMusic("Background");
     }
     public void PlaySFX(string name)
     {
@@ -46,8 +44,11 @@ public class AudioManager : MonoBehaviour
     public void PlayMusic(string name)
     {
         Sound sound = Array.Find(musicSounds, s => s.name == name);
-        sound.LoopMusic(true);
-        sound.PlayMusic(audioData.musicVolumn);
+        musicSound.loop = true;
+        musicSound.clip = sound.clip;
+        musicSound.pitch = sound.pitch;
+        musicSound.volume =  audioData.musicVolumn * sound.volumn;
+        musicSound.Play();
     }
     public void SetVolumn(float _volumn, Audio_Type type)
     {

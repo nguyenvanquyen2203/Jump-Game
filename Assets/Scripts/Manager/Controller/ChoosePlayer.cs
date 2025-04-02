@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,8 @@ public class ChoosePlayer : MonoBehaviour
     private CoinManager coinManager;
     public Image characterImg;
     public TextMeshProUGUI characterText;
-    public CharacterDB characterDB;
+    private SkinManager skinManager;
+    private List<Character> characters = new List<Character>();
     public Button chooseBtn;
     public Button buyBtn;
     private void Awake()
@@ -17,41 +19,43 @@ public class ChoosePlayer : MonoBehaviour
     }
     private void Start()
     {
-        selectedIndex = characterDB.indexSkin;
+        skinManager = SkinManager.Instance;
+        selectedIndex = skinManager.GetIndexSkin();
+        characters = skinManager.GetCharacters();
         UpdateCharacter(selectedIndex);
     }
     private void UpdateCharacter(int _selectedIndex)
     {
-        characterImg.sprite = characterDB.GetCharacter(_selectedIndex).characterSprite;
-        characterText.text = characterDB.GetCharacter(selectedIndex).characterName;
+        characterImg.sprite = characters[selectedIndex].characterSprite;
+        characterText.text = characters[selectedIndex].characterName;
         UpdateCharacterAction();
     }
     public void NextPlayer()
     {
         selectedIndex++;
-        if (selectedIndex >= characterDB.CharacterCount) selectedIndex = 0;
+        if (selectedIndex >= characters.Count) selectedIndex = 0;
         UpdateCharacter(selectedIndex);
     }
 
     public void BackPlayer()
     {
         selectedIndex--;
-        if (selectedIndex < 0) selectedIndex = characterDB.CharacterCount - 1;
+        if (selectedIndex < 0) selectedIndex = characters.Count - 1;
         UpdateCharacter(selectedIndex);
     }
     public void ChooseSkin() => Save();
-    private void Save() => characterDB.indexSkin = selectedIndex;
+    private void Save() => skinManager.SetIndexSkin(selectedIndex);
     public void BuySkin()
     {
-        int price = characterDB.GetCharacter(selectedIndex).price;
+        int price = characters[selectedIndex].price;
         if (!coinManager.SpendCoin(price)) return;
-        characterDB.BuySkin(selectedIndex);
+        skinManager.BuySkin(selectedIndex);
         UpdateCharacter(selectedIndex);
         UpdateCharacterAction();
     }
     private void UpdateCharacterAction()
     {
-        int priceSkin = characterDB.GetCharacter(selectedIndex).price;
+        int priceSkin = characters[selectedIndex].price;
         chooseBtn.interactable = priceSkin <= 0;
         if (priceSkin <= 0)
         {

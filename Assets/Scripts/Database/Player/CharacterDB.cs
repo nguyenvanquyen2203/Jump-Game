@@ -11,4 +11,6 @@ public class CharacterDB : ScriptableObject
     {
         characters[selectedIndex].BuySkin();
     }
+    public AnimatorOverrideController GetAnimator() => characters[indexSkin].animator;
+    public Character GetCurrentCharacter() => characters[indexSkin];
 }

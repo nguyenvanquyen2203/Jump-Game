@@ -6,7 +6,7 @@ public class CollectionManager : MonoBehaviour
 {
     private static CollectionManager instance;
     public static CollectionManager Instance { get { return instance; } }
-    public PoolCtrl fruitCollect;
+    public PoolCtrl itemCollect;
     public PoolCtrl boxBreakCtrl;
     public PoolCtrl pieceBreakCtrl;
     public PoolCtrl beePieceBreakCtrl;
@@ -19,20 +19,4 @@ public class CollectionManager : MonoBehaviour
     {
         poolCtrl.ActivePool(itemPos);
     }
-    /*public void ActiveFruitCollection(Vector3 itemPos)
-    {
-        fruitCollect.ActivePool(itemPos);
-    }
-    public void ActiveBoxBreak(Vector3 itemPos)
-    {
-        boxBreakCtrl.ActivePool(itemPos);
-    }
-    public void ActivePieceBreak(Vector3 itemPos)
-    {
-        pieceBreakCtrl.ActivePool(itemPos);
-    }
-    public void ActiveBuffJumpCollection(Vector3 itemPos)
-    {
-        buffJumpCtrl.ActivePool(itemPos);
-    }*/
 }

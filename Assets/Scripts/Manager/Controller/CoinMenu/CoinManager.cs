@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CoinManager : MonoBehaviour
 {
-    //public CharacterInfor characterDB;
     public TextMeshProUGUI coinTxt;
 
     private int coin;

@@ -1,13 +1,29 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SkinManager : MonoBehaviour
 {
-    public int GetPriceSkin(string nameSkin)
+    private static SkinManager instance;
+    public static SkinManager Instance {  get { return instance; } }
+    public CharacterDB characterDB;
+    private void Awake()
     {
-        return PlayerPrefs.GetInt(nameSkin, 0);
+        if (instance == null) instance = this;
+        else
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
     }
-    public void BuySkin(string nameSkin)
+    public List<Character> GetCharacters()
     {
-        PlayerPrefs.SetInt(nameSkin, 0);
+        List<Character> characters = new List<Character>();
+        foreach (var character in characterDB.characters) characters.Add(character);
+        return characters;
     }
+    public int GetIndexSkin() => characterDB.indexSkin;
+    public void SetIndexSkin(int index) => characterDB.indexSkin = index;
+    public void BuySkin(int index) => characterDB.BuySkin(index);
+    public AnimatorOverrideController GetAnimator() => characterDB.GetAnimator();
+    public Character GetCharacter() => characterDB.GetCurrentCharacter(); 
 }

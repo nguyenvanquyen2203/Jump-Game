@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private InputManager playerInput;
     private InputAction movement;
     private InputAction jumpAct;
     private Rigidbody2D m_rb;
@@ -28,17 +27,16 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        playerInput = new InputManager();
-        movement = playerInput.Movement.LeftRight;
-        jumpAct = playerInput.Movement.Jump;
         m_animator = GetComponent<Animator>();
         m_rb = GetComponent<Rigidbody2D>();
         m_collider = GetComponent<BoxCollider2D>();
     }
     private void OnEnable()
     {
+        movement = InputCtrl.Instance.GetInput().Movement.LeftRight;
+        jumpAct = InputCtrl.Instance.GetInput().Movement.Jump;
         jumpAct.performed += JumpActions_performed;
-        playerInput.Enable();
+        //movement.Enable();
     }
     private void OnDisable()
     {
@@ -99,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         ChangeAnimState(state);
     }
     public void ChangeAnimState(string _state) => m_animator.Play(_state);
-    public void Jump()
+    private void Jump()
     {
         AudioManager.Instance.PlaySFX("Jump");
         moveVector = new Vector2(m_rb.velocity.x, Mathf.Sqrt(2 * m_jumpHeight * 9.81f * multiGraviry));
@@ -118,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
             Jump();
         }
     }
-    public bool IsGround()
+    private bool IsGround()
     {
         return Physics2D.BoxCast(m_collider.bounds.center, m_collider.bounds.size, 0f, Vector2.down, .1f, GroundLayer);
     }
