@@ -22,11 +22,6 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-        /*foreach (Sound s in musicSounds)
-        {
-            AudioSource src = gameObject.AddComponent<AudioSource>();
-            s.InitSrc(src);
-        }*/
         AudioSource temp = gameObject.AddComponent<AudioSource>();
         musicSounds.InitSrc(temp);
         musicSounds.SetVolumn(audioData.musicVolumn);

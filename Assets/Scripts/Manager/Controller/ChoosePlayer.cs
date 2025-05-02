@@ -6,20 +6,20 @@ using UnityEngine.UI;
 public class ChoosePlayer : MonoBehaviour
 {
     private int selectedIndex = 0;
-    private CoinManager coinManager;
+    private CoinMainMenu coinManager;
     public Image characterImg;
     public TextMeshProUGUI characterText;
-    private SkinManager skinManager;
+    private PlayerData skinManager;
     private List<Character> characters = new List<Character>();
     public Button chooseBtn;
     public Button buyBtn;
     private void Awake()
     {
-        coinManager = GetComponent<CoinManager>();
+        coinManager = GetComponent<CoinMainMenu>();
     }
     private void Start()
     {
-        skinManager = SkinManager.Instance;
+        skinManager = PlayerData.Instance;
         selectedIndex = skinManager.GetIndexSkin();
         characters = skinManager.GetCharacters();
         UpdateCharacter(selectedIndex);

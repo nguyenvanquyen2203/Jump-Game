@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class CoinSell : MonoBehaviour
 {
-    private CoinManager manager;
+    private CoinMainMenu manager;
     private string fruitName;
     public Image fruitImage;
     public TextMeshProUGUI fruitText;
     public MyButton sellBtn;
     private int fruitVal;
     private int numberFruit;
-    public void Intinialize(CoinManager _manager, string _fruitName, Sprite _fruitImage, int val)
+    public void Intinialize(CoinMainMenu _manager, string _fruitName, Sprite _fruitImage, int val)
     {
         this.manager = _manager;
         this.fruitName = _fruitName;

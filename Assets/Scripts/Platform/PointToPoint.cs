@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointToPoint : Subject, IMovePlatform
+public class PointToPoint : PlatformSubject, IMovePlatform
 {
     private enum State
     {
@@ -70,7 +70,7 @@ public class PointToPoint : Subject, IMovePlatform
     public void ChangeDirection()
     {
         UpdateDirection();
-        NotifyObserver();
+        NotifyObserver(direction * speed);
     }
     private void UpdateDirection()
     {

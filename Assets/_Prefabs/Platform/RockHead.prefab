@@ -206,12 +206,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed9beed9a75fe6c44a924478b1973f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 1, y: 0}
   mask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   delayTime: 1
-  speed: 10
+  <direction>k__BackingField: {x: 0, y: 1}
+  <speed>k__BackingField: 5
 --- !u!114 &8569947295842317804
 MonoBehaviour:
   m_ObjectHideFlags: 0

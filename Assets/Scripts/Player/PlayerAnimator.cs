@@ -11,6 +11,6 @@ public class PlayerAnimator : MonoBehaviour
     }
     void Start()
     {
-        m_animator.runtimeAnimatorController = SkinManager.Instance.GetAnimator();
+        m_animator.runtimeAnimatorController = PlayerData.Instance.GetAnimator();
     }
 }

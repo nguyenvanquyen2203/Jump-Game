@@ -1,14 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private Image playerIcon;
-    // Start is called before the first frame update
+    [SerializeField] private TextMeshProUGUI coinTxt;
     void Start()
     {
-        playerIcon.sprite = SkinManager.Instance.GetCharacter().characterSprite;
+        GameManager.Instance.AddCoinCollectEvent(UpdateCoin);
+        playerIcon.sprite = PlayerData.Instance.GetCharacter().characterSprite;
+    }
+    public void UpdateCoin()
+    {
+        coinTxt.text = GameManager.Instance.GetCoin().ToString();
     }
 }

@@ -3,13 +3,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class PauseMenu : MonoBehaviour
+public class PauseMenu : MonoBehaviour, IInputObserver
 {
     private static PauseMenu instance;
     public static PauseMenu Instance { get { return instance; } }
     private InputAction pauseInput;
     private bool isPause;
-    private bool isOver;
     public Image bG;
     public GameObject pauseMenu;
     public GameObject resumeBtn;
@@ -22,10 +21,8 @@ public class PauseMenu : MonoBehaviour
     }
     void Start()
     {
-        pauseInput = InputCtrl.Instance.GetInput().Control.Exit;
-        pauseInput.performed += ExitAct;
+        pauseInput = InputCtrl.Instance.GetInput(this).Control.Exit;
         Time.timeScale = 1.0f;
-        isOver = false;
         isPause = false;
         DisappearMenu();
         pauseMenu.transform.localScale = Vector2.zero;
@@ -38,7 +35,6 @@ public class PauseMenu : MonoBehaviour
     }
     public void GameOver(bool _isWin)
     {
-        isOver = true;
         OpenMenu();
         if (_isWin)
         {
@@ -100,5 +96,15 @@ public class PauseMenu : MonoBehaviour
     public void LoadNextScene()
     {
         SceneInteractable.LoadNextScene();
+    }
+
+    public void DisableInput()
+    {
+        pauseInput.performed -= ExitAct;
+    }
+
+    public void EnableInput()
+    {
+        pauseInput.performed += ExitAct;
     }
 }

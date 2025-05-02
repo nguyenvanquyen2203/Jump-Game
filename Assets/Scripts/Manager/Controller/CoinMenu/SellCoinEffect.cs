@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SellCoinEffect : MonoBehaviour
 {
-    private CoinManager coinManager;
+    private CoinMainMenu coinManager;
     private TextMeshProUGUI txt;
     private Color color;
     private Color noneColor;
@@ -14,7 +14,7 @@ public class SellCoinEffect : MonoBehaviour
         noneColor = txt.color;
         noneColor.a = 0;
     }
-    public void Intinial(CoinManager manager)
+    public void Intinial(CoinMainMenu manager)
     {
         this.coinManager = manager;
     }

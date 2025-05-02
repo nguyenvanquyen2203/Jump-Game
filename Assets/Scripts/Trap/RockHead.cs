@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RockHead : Subject, IMovePlatform
+public class RockHead : PlatformSubject, IMovePlatform
 {
     private Vector3 dir;
     private float distanceCheck;
@@ -41,12 +41,9 @@ public class RockHead : Subject, IMovePlatform
         if (couter > 0f)
         {
             couter -= Time.fixedDeltaTime;
-            return;
-        }
-        else
-        {
-            isMove = true;
-        }
+            if (couter <= 0f) NotifyObserver(speed * direction);
+        } 
+        else isMove = true;
     }
 
     private void TakeHit()
@@ -62,7 +59,7 @@ public class RockHead : Subject, IMovePlatform
         RaycastHit2D[] hits = Physics2D.BoxCastAll(box.bounds.center, box.bounds.size, 0f, dir, distanceCheck, mask);
         foreach (RaycastHit2D hit in hits)
         {
-            if (hit.collider.CompareTag("Ground")) return true; 
+            if (hit.collider.CompareTag("Ground")) return true;
         }
         return false;
     }
@@ -71,6 +68,14 @@ public class RockHead : Subject, IMovePlatform
     {
         dir *= -1f;
         direction *= -1f;
-        NotifyObserver();
+        if (isMove)
+        {
+            NotifyObserver(speed * direction);
+        }
+        else
+        {
+            NotifyObserver(Vector2.zero);
+        }
+        //NotifyObserver();
     }
 }

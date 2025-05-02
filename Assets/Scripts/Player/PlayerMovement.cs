@@ -36,7 +36,6 @@ public class PlayerMovement : MonoBehaviour
         movement = InputCtrl.Instance.GetInput().Movement.LeftRight;
         jumpAct = InputCtrl.Instance.GetInput().Movement.Jump;
         jumpAct.performed += JumpActions_performed;
-        //movement.Enable();
     }
     private void OnDisable()
     {
@@ -130,5 +129,15 @@ public class PlayerMovement : MonoBehaviour
     {
         bonusVector = _bonusVector;
     }
-    public void SetDust(int indexDust) => currentDust = indexDust; 
+    public void SetDust(int indexDust) => currentDust = indexDust;
+
+    public void DisableInput()
+    {
+        jumpAct.performed -= JumpActions_performed;
+    }
+
+    public void EnableInput()
+    {
+        jumpAct.performed += JumpActions_performed;
+    }
 }

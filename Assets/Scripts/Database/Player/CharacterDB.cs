@@ -4,6 +4,7 @@ using UnityEngine;
 public class CharacterDB : ScriptableObject
 {
     public int indexSkin;
+    public int coin;
     public Character[] characters;
     public int CharacterCount { get { return characters.Length; } }
     public Character GetCharacter(int selectedIndex) => characters[selectedIndex];
