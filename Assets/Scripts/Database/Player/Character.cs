@@ -3,12 +3,14 @@ using UnityEngine;
 [System.Serializable]
 public class Character
 {
+    public int id;
     public string characterName;
     public Sprite characterSprite;
     public AnimatorOverrideController animator;
-    public int price;
-    public void BuySkin()
+    public Character(string characterName, Sprite characterSprite, AnimatorOverrideController animator)
     {
-        price = 0;
+        this.characterName = characterName;
+        this.characterSprite = characterSprite;
+        this.animator = animator;
     }
 }

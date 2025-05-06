@@ -47,7 +47,8 @@ public class ChoosePlayer : MonoBehaviour
     private void Save() => skinManager.SetIndexSkin(selectedIndex);
     public void BuySkin()
     {
-        int price = characters[selectedIndex].price;
+        //int price = characters[selectedIndex].price;
+        int price = PlayerData.Instance.GetPrice(selectedIndex);
         if (!coinManager.SpendCoin(price)) return;
         skinManager.BuySkin(selectedIndex);
         UpdateCharacter(selectedIndex);
@@ -55,7 +56,8 @@ public class ChoosePlayer : MonoBehaviour
     }
     private void UpdateCharacterAction()
     {
-        int priceSkin = characters[selectedIndex].price;
+        //int priceSkin = characters[selectedIndex].price;
+        int priceSkin = PlayerData.Instance.GetPrice(selectedIndex);
         chooseBtn.interactable = priceSkin <= 0;
         if (priceSkin <= 0)
         {
