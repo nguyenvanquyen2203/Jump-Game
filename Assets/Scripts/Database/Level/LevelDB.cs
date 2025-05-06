@@ -1,10 +1,6 @@
 using System;
+using System.Runtime.Serialization;
 using UnityEngine;
-[Serializable]
-public class LevelInfo
-{
-    public int star;
-}
 [CreateAssetMenu (menuName = "LevelDB", fileName = "LevelDB")]
 public class LevelDB : ScriptableObject
 {

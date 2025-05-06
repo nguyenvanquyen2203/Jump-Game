@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,4 +30,10 @@ public class PlayerData : MonoBehaviour
     public int GetCoin() => characterDB.coin;
     public void SaveCoin(int coin) => characterDB.coin = coin;
     public void CollectCoin(int coin) => characterDB.coin += coin;
+}
+[Serializable] 
+public class CharacterData
+{
+    public int indexSkin;
+    public int coin;
 }
