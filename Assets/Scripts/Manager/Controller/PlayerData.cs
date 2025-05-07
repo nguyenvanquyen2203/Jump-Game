@@ -66,6 +66,7 @@ public class PlayerData : MonoBehaviour
     public void CollectCoin(int coin)
     {
         characterData.coin += coin;
+        Save<CharacterData>(characterData, Application.dataPath + "/PlayerData.txt");
         
     } 
 }

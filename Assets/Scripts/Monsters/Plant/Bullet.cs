@@ -20,14 +20,11 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Monster")) return;
         if (collision.CompareTag("Player")) collision.GetComponent<PlayerHealth>().Hurt();
         collectionManager.ActivePoolCtrl(pieceBreakCtrl, transform.position);
         gameObject.SetActive(false);
     }
     public void SetDirection(Vector2 _dir) => direction = _dir;
-    private void OnDisable()
-    {
-        gameObject.SetActive(false);
-    }
     public void SetPieceBreakCtrl(PoolCtrl _pieceBreakCtrl) => pieceBreakCtrl = _pieceBreakCtrl;
 }

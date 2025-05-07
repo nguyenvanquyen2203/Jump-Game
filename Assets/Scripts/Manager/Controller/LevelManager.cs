@@ -21,8 +21,6 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         LoadData();
-        /*levelData = new LevelData(levelDB);
-        Save();*/
     }
     public void Save()
     {
@@ -43,14 +41,22 @@ public class LevelManager : MonoBehaviour
     public int GetStarLv(int lv) => levelData.GetStar(lv);
     public void SetCurrentLV(int lv) => levelData.currentLV = lv;
     public int GetCurrentLV() => levelData.currentLV;
-    public void UnlockLv() => levelData.unlockLV++;
+    public void UnlockLv()
+    {
+        levelData.unlockLV++;
+        if (levelData.unlockLV > levelData.levels.Length) levelData.unlockLV = levelData.levels.Length;
+    }
     public void SetStar(int star)
     {
         levelData.SetStar(star);
         Save();
     }
     public void ReloadLV() => SceneInteractable.LoadScene(GetCurrentLV());
-    public void LoadNextLV() => SceneInteractable.LoadScene(GetCurrentLV() + 1);
+    public void LoadNextLV()
+    {
+        SceneInteractable.LoadScene(GetCurrentLV() + 1);
+        levelData.currentLV++;
+    } 
 }
 
 [System.Serializable]
@@ -61,12 +67,6 @@ public class LevelData
     public LevelInfo[] levels;
     public int GetStar(int lv) => levels[lv - 1].star;
     public int SetStar(int star) => levels[currentLV - 1].star = Math.Max(star, levels[currentLV - 1].star);
-    public LevelData(LevelDB db)
-    {
-        unlockLV = db.UnlockLV; currentLV = db.CurrentLV;
-        levels = new LevelInfo[db.levels.Length];
-        for (int i = 0; i < levels.Length; i++) levels[i] = new LevelInfo(db.GetStar(i + 1));
-    }
 }
 [Serializable]
 public class LevelInfo
