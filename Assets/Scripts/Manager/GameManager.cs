@@ -1,66 +1,56 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject fakePlayerObj;
-    public GameObject playerObj;
+    private GameObject playerObj;
     public Transform spawnPoint;
+    private int star = 0;
+    private int coin = 0;
     [SerializeField] private FakePlayer fakePlayer;
     private int levelUnlock;
     private static GameManager instance;
     public static GameManager Instance { get { return instance; } }
+    private UnityEvent collectCoinEvt = new UnityEvent();
     private void Awake()
     {
         instance = this;
     }
+    private void Reset()
+    {
+        spawnPoint = GameObject.Find("Start").transform;
+        fakePlayer = GameObject.Find("FakePlayer").GetComponent<FakePlayer>();
+    }
     // Start is called before the first frame update
     void Start()
     {
-        levelUnlock = PlayerPrefs.GetInt("LevelUnlock");
-        if (fakePlayer == null)
-        {
-            fakePlayer = GameObject.Find("FakePlayer")?.GetComponent<FakePlayer>();
-            if (fakePlayer == null) fakePlayer = Instantiate(fakePlayerObj).GetComponent<FakePlayer>();
-        }
-        if (playerObj == null)
-        {
-            playerObj = GameObject.FindGameObjectWithTag("Player");
-        }
-        if (spawnPoint == null)
-        {
-            spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint")?.transform;
-            if (spawnPoint == null)
-            {
-                spawnPoint = new GameObject("SpawnPoint").transform;
-                spawnPoint.position = playerObj.transform.position;
-                spawnPoint.tag = "SpawnPoint";
-            } 
-        }
-        else playerObj.transform.position = spawnPoint.position;
+        if (spawnPoint == null || fakePlayer == null) Reset(); 
+        AudioManager.Instance.PlayMusic("Background");
+        levelUnlock = LevelManager.Instance.GetUnlockLV();
+        playerObj = GameObject.FindGameObjectWithTag("Player");
+        playerObj.transform.position = spawnPoint.position;
+        InputCtrl.Instance.EnableInput();
     }
     public void Death()
     {
+        collectCoinEvt.RemoveAllListeners();
         playerObj.SetActive(false);
         fakePlayer.Disappear(playerObj.transform);
         Invoke(nameof(Appear), 2f);
     }
     public void GameOver(bool isWin)
     {
-        //AudioManager.Instance.StopMusic();
+        InputCtrl.Instance.DisableInput();
         if (isWin)
         {
             AudioManager.Instance.PlaySFX("WinGame");
-            if (PauseMenu.Instance.GetIndexScene() == levelUnlock)
-            {
-                levelUnlock++;
-                PlayerPrefs.SetInt("LevelUnlock", levelUnlock);
-            }
-        } 
+            if (LevelManager.Instance.GetCurrentLV() == levelUnlock) LevelManager.Instance.UnlockLv();
+            LevelManager.Instance.SetStar(star);
+        }
         else AudioManager.Instance.PlaySFX("GameOver");
-        PointManager.Instance.UpdatePoint();
+        PlayerData.Instance.CollectCoin(coin);
         playerObj.SetActive(isWin);
-        InputManager.Instance.DisableInput();
-        PauseMenu.Instance.GameOver(isWin);
+        GameMenuCtrl.Instance.GameOver(isWin);
     }
     public void Appear()
     {
@@ -74,6 +64,18 @@ public class GameManager : MonoBehaviour
     public void UpdateSpawnPoint(Transform _spawnPoint)
     {
         spawnPoint = _spawnPoint;
+    }
+    public void CollectStar() => star++;
+    public int GetStar() => star;
+    public int GetCoin() => coin;
 
-    } 
+    public void CollectCoin()
+    {
+        coin++;
+        collectCoinEvt?.Invoke();
+    }
+    public void AddCoinCollectEvent(UnityAction act)
+    {
+        collectCoinEvt.AddListener(act);
+    }
 }

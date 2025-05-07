@@ -1,56 +1,71 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Monster : MonoBehaviour
 {
     protected Animator monsterAnimator;
-    protected Rigidbody2D rb;
-    private string state;
-    private bool lockState;
-    private int direction;
-    protected int lockMove;
-    protected bool canAttack;
     public MonsterInfo monsterInfo;
+    protected Rigidbody2D rb;
+    private string animState;
+    private bool lockState;
     protected int hp;
-    protected float speed;
     private bool isDead;
+    private DeathRotate deadRotate;
+    private void Reset()
+    {
+        deadRotate = GetComponent<DeathRotate>();
+        if (deadRotate == null)
+        {
+            deadRotate = gameObject.AddComponent<DeathRotate>();
+            deadRotate.enabled = false;
+            deadRotate.rotateSpeed = 90f;
+        }
+    }
     protected void InitMonster()
     {
-        isDead = false;
         monsterAnimator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        lockState = false;
-        lockMove = 1;
-        direction = 1;
+        if (rb == null)
+        {
+            rb = gameObject.AddComponent<Rigidbody2D>();
+        }
+        deadRotate = GetComponent<DeathRotate>();
+        if (deadRotate == null)
+        {
+            deadRotate = gameObject.AddComponent<DeathRotate>();
+            deadRotate.rotateSpeed = 90f;
+        }
         ResetInfo();
     }
-    public void ResetInfo()
+    public virtual void ResetInfo()
     {
-        hp = monsterInfo.hp;
-        speed = monsterInfo.speed;
         UnlockState();
         UnlockMove();
         isDead = false;
 
         gameObject.GetComponent<BoxCollider2D>().enabled = true;
+
+        //Set default RB
         rb.bodyType = RigidbodyType2D.Kinematic;
 
         #region Rotate GO
-        GetComponent<DeathRotate>().enabled = false;
+        deadRotate.enabled = false;
         #endregion
     }
     public void ChangeState(string _state)
     {
-        if (!lockState) state = _state;
+        if (!lockState) animState = _state;
     }
     public void RunAnim()
     {
-        monsterAnimator.Play(state);
+        monsterAnimator.Play(animState);
     }
     public virtual void TakeHit()
     {
         hp--;
         if (hp >= 0)
         {
+            UnlockState();
             LockMove();
             ChangeState("takeHit");
             LockState();
@@ -67,7 +82,7 @@ public abstract class Monster : MonoBehaviour
             UnlockState();
         } 
     }
-    protected void Death()
+    protected virtual void Death()
     {
         LockState();
         isDead = true;
@@ -76,38 +91,30 @@ public abstract class Monster : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Dynamic;
 
         #region Rotate GO
-        GetComponent<DeathRotate>().enabled = true;
+        deadRotate.enabled = true;
         #endregion
 
-        rb.AddForce(Vector2.up * 10f + Vector2.right * (speed * .75f) * direction, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * 10f + Vector2.right * (rb.velocity.x * .75f), ForceMode2D.Impulse);
         rb.gravityScale = 5f;
         Invoke(nameof(Disable), 3f);
     }
     protected void LockState() => lockState = true;
     public void UnlockState() => lockState = false;
-    protected void Move()
+    protected void Move(Vector2 newVelocity)
     {
-        rb.velocity = new Vector2(speed * direction, rb.velocity.y);
+        rb.velocity = newVelocity;
     }
-    protected void Move(Vector2 moveVector)
+    protected virtual void LockMove()
     {
-        rb.velocity = moveVector * speed;
-    }
-    protected void LockMove()
-    {
-        lockMove = 0;
-        rb.velocity = Vector2.zero;
+
     } 
-    public void UnlockMove() => lockMove = 1;
+    public virtual void UnlockMove()
+    {
+
+    }
     protected void Disable()
     {
         gameObject.SetActive(false);
     }
-    public virtual void ChangeDirection()
-    {
-        transform.localScale = new Vector3(direction, 1, 1);
-        direction *= -1;
-    }
-    public void CanAttack(bool _canAttack) => canAttack = _canAttack;
     public bool IsDead() => isDead;
 }

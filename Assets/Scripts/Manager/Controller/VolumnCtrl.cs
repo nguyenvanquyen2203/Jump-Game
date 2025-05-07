@@ -13,7 +13,7 @@ public class VolumnCtrl : MonoBehaviour
     public void SetVolumn()
     {
         volumn = volumnSlider.value;
-        AudioManager.Instance.SetVolumn(volumn);
+        //AudioManager.Instance.SetVolumn(volumn);
         SaveVolumn();
     }
     public void SaveVolumn() => PlayerPrefs.SetFloat("volumn", volumn);

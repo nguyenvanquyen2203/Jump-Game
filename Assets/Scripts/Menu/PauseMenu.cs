@@ -1,11 +1,15 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
-public class PauseMenu : SceneInteractable
+public class PauseMenu : MonoBehaviour, IInputObserver
 {
     private static PauseMenu instance;
     public static PauseMenu Instance { get { return instance; } }
+    private InputAction pauseInput;
     private bool isPause;
-    private bool isOver;
+    public Image bG;
     public GameObject pauseMenu;
     public GameObject resumeBtn;
     public GameObject nextLvBtn;
@@ -17,24 +21,20 @@ public class PauseMenu : SceneInteractable
     }
     void Start()
     {
+        pauseInput = InputCtrl.Instance.GetInput(this).Control.Exit;
         Time.timeScale = 1.0f;
-        isOver = false;
         isPause = false;
-        CloseMenu();
+        DisappearMenu();
+        pauseMenu.transform.localScale = Vector2.zero;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ExitAct(InputAction.CallbackContext obj)
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isOver)
-        {
-            if (!isPause) PauseGame();
-            else ResumeGame();
-        }
+        if (!isPause) PauseGame();
+        else ResumeGame();
     }
     public void GameOver(bool _isWin)
     {
-        isOver = true;
         OpenMenu();
         if (_isWin)
         {
@@ -46,6 +46,7 @@ public class PauseMenu : SceneInteractable
             lockPanel.SetActive(true);
         }
     }
+    
     public void PauseGame()
     {
         isPause = true;
@@ -57,14 +58,53 @@ public class PauseMenu : SceneInteractable
     {
         isPause = false;
         Time.timeScale = 1f;
-        CloseMenu();
+        DisappearMenu();
     }
-    public void OpenMenu() => pauseMenu.SetActive(true);
+    public void OpenMenu()
+    {
+        pauseMenu.SetActive(true);
+        AppearMenu();
+    }
+    public void DisappearMenu()
+    {
+        LeanTween.value(gameObject, (value) => { bG.color = value; }, SomeColor.black(.5f), SomeColor.black(0), .5f).setEase(LeanTweenType.easeOutQuad);
+        pauseMenu.LeanScale(Vector2.zero, .5f).setOnComplete(CloseMenu).setIgnoreTimeScale(true).setEaseInBack();
+    }
+
+    #region Animations
+    private void AppearMenu()
+    {
+        LeanTween.value(gameObject, (value) => { bG.color = value; }, SomeColor.black(0), SomeColor.black(.5f), .8f).setEase(LeanTweenType.easeOutQuad).setIgnoreTimeScale(true);
+        pauseMenu.LeanScale(Vector2.one, .8f).setIgnoreTimeScale(true);
+    }
     public void CloseMenu()
     {
         nextLvBtn.SetActive(false);
         lockPanel.SetActive(false);
         resumeBtn.SetActive(false);
         pauseMenu.SetActive(false);
-    } 
+    }
+    #endregion
+    public void LoadScene(int index)
+    {
+        SceneInteractable.LoadScene(index);
+    }
+    public void ReloadScene()
+    {
+        SceneInteractable.Reload();
+    }
+    public void LoadNextScene()
+    {
+        SceneInteractable.LoadNextScene();
+    }
+
+    public void DisableInput()
+    {
+        pauseInput.performed -= ExitAct;
+    }
+
+    public void EnableInput()
+    {
+        pauseInput.performed += ExitAct;
+    }
 }

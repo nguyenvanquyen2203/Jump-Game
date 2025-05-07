@@ -6,29 +6,17 @@ public class CollectionManager : MonoBehaviour
 {
     private static CollectionManager instance;
     public static CollectionManager Instance { get { return instance; } }
-    [SerializeField] private Collection[] collections;
-    // Start is called before the first frame update
-    private void Reset()
-    {
-        collections = GetComponentsInChildren<Collection>();
-    }
+    public PoolCtrl itemCollect;
+    public PoolCtrl boxBreakCtrl;
+    public PoolCtrl pieceBreakCtrl;
+    public PoolCtrl beePieceBreakCtrl;
+    public PoolCtrl buffJumpCtrl;
     private void Awake()
     {
         instance = this;
     }
-    void Start()
+    public void ActivePoolCtrl(PoolCtrl poolCtrl, Vector3 itemPos)
     {
-        foreach (var collection in collections) collection.gameObject.SetActive(false);
-    }
-    public void Active(Vector3 itemPos)
-    {
-        foreach (var collection in collections)
-        {
-            if (!collection.gameObject.activeSelf)
-            {
-                collection.Active(itemPos);
-                return;
-            }
-        }
+        poolCtrl.ActivePool(itemPos);
     }
 }

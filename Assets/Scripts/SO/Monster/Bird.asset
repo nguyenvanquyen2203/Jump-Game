@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f527e9fbfc5cd40409f359dc01755c13, type: 3}
   m_Name: Bird
   m_EditorClassIdentifier: 
-  hp: 1
+  hp: 2
   speed: 2

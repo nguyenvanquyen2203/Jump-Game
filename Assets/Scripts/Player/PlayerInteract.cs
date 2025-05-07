@@ -13,9 +13,9 @@ public class PlayerInteract : MonoBehaviour
                 gameObject.GetComponent<PlayerMovement>().Attack();
             }
         }
-        if (collision.gameObject.CompareTag("Platform/Box"))
+        if (collision.gameObject.CompareTag("Box"))
         {
-            if (collision.GetContact(0).normal.y > .5f) 
+            if (collision.GetContact(0).normal.y > .5f)
             {
                 collision.gameObject.GetComponent<Box>().TakeHit();
                 gameObject.GetComponent<PlayerMovement>().Attack();

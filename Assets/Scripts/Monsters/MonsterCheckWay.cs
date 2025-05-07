@@ -3,10 +3,10 @@ using UnityEngine;
 public class MonsterCheckWay : MonoBehaviour
 {
     [SerializeField] private bool isIn;
-    private Monster monster;
+    private RunMonster monster;
     private void Awake()
     {
-        monster = transform.parent.GetComponent<Monster>();
+        monster = transform.parent.GetComponent<RunMonster>();
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

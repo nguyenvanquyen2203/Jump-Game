@@ -151,8 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8452923a8ea0bfb41ab7e56c4f7c9b22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 2
-  speed: 2
+  monsterInfo: {fileID: 0}
   timeAttack: 2
 --- !u!50 &4167897199330558753
 Rigidbody2D:
@@ -188,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayDistance: 2
-  checkLayer:
+  playerLayer:
     serializedVersion: 2
     m_Bits: 1024
 --- !u!114 &4788303319811695723

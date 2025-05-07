@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class Bat : Monster
+public class Bat : FlyingMonster
 {
     private Vector3 centerPos;
     [SerializeField] private float restTime;
-    [SerializeField] private Vector2 moveSpace;
+    //[SerializeField] private Vector2 moveSpace;
+    private bool lockMove;
     private Vector3 moveVector;
     private float restCountDown;
     private bool isIdle;
@@ -19,6 +20,7 @@ public class Bat : Monster
         restCountDown = 0;
         moveVector = Vector3.zero;
         isIdle = true;
+        lockMove = false;
     }
 
     // Update is called once per frame
@@ -57,7 +59,25 @@ public class Bat : Monster
     private bool MoveToPoint(Vector3 targetPos)
     {
         if ((transform.position - targetPos).sqrMagnitude < .01f) return true;
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.fixedDeltaTime * lockMove);
+        if (!lockMove) transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.fixedDeltaTime);
         return false;
+    }
+    protected void ChangeDirection()
+    {
+        float moveTime = 0;
+        if (moveVector.y > 0) moveTime = restTime;
+        moveVector = new Vector3(Random.Range(-moveSpace.x, moveSpace.x), Random.Range(-moveSpace.y, moveSpace.y * 1 / 2), 0f);
+        Vector2 targetPos = centerPos + new Vector3(moveVector.x, Mathf.Clamp(moveVector.y, -moveSpace.y, 0f), moveVector.z);
+        base.ChangeDirection(-transform.position + new Vector3(targetPos.x, targetPos.y, transform.position.z));
+        if (moveTime != 0) moveTime = new Vector2(targetPos.x - transform.position.x, targetPos.y - transform.position.y).magnitude;
+        Invoke(nameof(ChangeDirection), moveTime);
+    }
+    protected override void LockMove()
+    {
+        lockMove = true;
+    }
+    public override void UnlockMove()
+    {
+        lockMove = false;
     }
 }

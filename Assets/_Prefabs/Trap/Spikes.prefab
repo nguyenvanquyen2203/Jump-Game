@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 727942165082421693}
   - component: {fileID: 727942165082421694}
   - component: {fileID: 727942165082421695}
-  m_Layer: 12
+  - component: {fileID: 5017027180797016981}
+  m_Layer: 9
   m_Name: Spikes
   m_TagString: Trap
   m_Icon: {fileID: 0}
@@ -29,7 +30,8 @@ Transform:
   m_LocalPosition: {x: -5, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8231595471297636550}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -111,3 +113,49 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8097844, y: 0.37929642}
   m_EdgeRadius: 0
+--- !u!114 &5017027180797016981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727942165082421633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dae1a465784974c4bbc9d78c642d17b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chainPrefab: {fileID: 727942165082421633, guid: 214dbeabc8e8e964b83621e4461c874c, type: 3}
+  distanceChain: 1
+  lastChain: {fileID: 8231595471297636550}
+--- !u!1 &2275967667614810350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8231595471297636550}
+  m_Layer: 0
+  m_Name: LastChain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8231595471297636550
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2275967667614810350}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 727942165082421693}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

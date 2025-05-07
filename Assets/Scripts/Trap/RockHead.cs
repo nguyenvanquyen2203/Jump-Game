@@ -1,9 +1,7 @@
-using System;
 using UnityEngine;
 
-public class RockHead : MonoBehaviour
+public class RockHead : PlatformSubject, IMovePlatform
 {
-    public Vector2 direction;
     private Vector3 dir;
     private float distanceCheck;
     private BoxCollider2D box;
@@ -11,8 +9,11 @@ public class RockHead : MonoBehaviour
     public LayerMask mask;
     public float delayTime;
     private float couter;
-    public float speed;
     private bool isMove;
+
+    [field: SerializeField] public Vector2 direction { get; set; }
+    [field: SerializeField] public float speed { get; set; }
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -34,18 +35,15 @@ public class RockHead : MonoBehaviour
         {
             isMove = false;
             TakeHit();
-            dir *= -1f;
+            ChangeDirection();
         }
         if (isMove) transform.position += dir * speed * Time.fixedDeltaTime;
         if (couter > 0f)
         {
             couter -= Time.fixedDeltaTime;
-            return;
-        }
-        else
-        {
-            isMove = true;
-        }
+            if (couter <= 0f) NotifyObserver(speed * direction);
+        } 
+        else isMove = true;
     }
 
     private void TakeHit()
@@ -58,6 +56,26 @@ public class RockHead : MonoBehaviour
     }
     private bool IsContact()
     {
-        return Physics2D.BoxCast(box.bounds.center, box.bounds.size, 0f, dir, distanceCheck, mask);
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(box.bounds.center, box.bounds.size, 0f, dir, distanceCheck, mask);
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider.CompareTag("Ground")) return true;
+        }
+        return false;
+    }
+
+    public void ChangeDirection()
+    {
+        dir *= -1f;
+        direction *= -1f;
+        if (isMove)
+        {
+            NotifyObserver(speed * direction);
+        }
+        else
+        {
+            NotifyObserver(Vector2.zero);
+        }
+        //NotifyObserver();
     }
 }

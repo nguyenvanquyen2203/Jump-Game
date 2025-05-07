@@ -1,9 +1,24 @@
 using UnityEngine;
 
-public class Chameleon : Monster
+public class Chameleon : RunMonster, IAttackable
 {
     [SerializeField] private float timeAttack;
     private float cooldownAttack;
+
+    public bool canAttack { get ; set ; }
+
+    public void Attack()
+    {
+        if (cooldownAttack <= 0)
+        {
+            rb.velocity = Vector2.zero;
+            LockMove();
+            ChangeState("attack");
+            RunAnim();
+            cooldownAttack = timeAttack;
+        }
+    }
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -13,20 +28,12 @@ public class Chameleon : Monster
     {
         canAttack = false;
         cooldownAttack = 0;
+        Move();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (lockMove != 0) Move();
-        if (cooldownAttack <= 0 && canAttack)
-        {
-            rb.velocity = Vector2.zero;
-            LockMove();
-            ChangeState("attack");
-            RunAnim();
-            cooldownAttack = timeAttack;
-        }
-        if (cooldownAttack > 0) cooldownAttack -= Time.deltaTime;
+        if (cooldownAttack > 0) cooldownAttack -= Time.fixedDeltaTime;
     }
 }

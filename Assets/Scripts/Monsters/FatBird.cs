@@ -2,25 +2,29 @@ using UnityEngine;
 
 public class FatBird : Monster
 {
+    public float speed;
     private bool isFall;
     private float gravity = -9.8f;
     private float velocity;
+    private bool lockMove;
     // Start is called before the first frame update
     private void Awake()
     {
         InitMonster();
+        hp = monsterInfo.hp;
         rb.bodyType = RigidbodyType2D.Dynamic;
     }
     void Start()
     {
         isFall = true;
         velocity = 0f;
+        lockMove = false;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (lockMove != 0)
+        if (!lockMove)
         {
             if (isFall)
             {
@@ -45,5 +49,13 @@ public class FatBird : Monster
         RunAnim();
         isFall = !isFall;
         velocity = 0f;
+    }
+    protected override void LockMove()
+    {
+        lockMove = true;
+    }
+    public override void UnlockMove()
+    {
+        lockMove = false;
     }
 }

@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94e52e00d30986041889e0b73b45bbe7, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1102 &-3088956405564262580
@@ -24,8 +24,7 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -900298857719433856}
-  m_StateMachineBehaviours:
-  - {fileID: -4103242952088278163}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

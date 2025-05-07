@@ -3,20 +3,19 @@ using UnityEngine;
 public class MonsterRayCheck : MonoBehaviour
 {
     private BoxCollider2D box;
-    private Monster monster;
+    private IAttackable monster;
     [SerializeField] private float rayDistance;
-    [SerializeField] private LayerMask checkLayer;
+    [SerializeField] private LayerMask playerLayer;
     private void Awake()    
     {
         box = GetComponent<BoxCollider2D>();
-        monster = GetComponent<Monster>();
+        monster = GetComponent<IAttackable>();
     }
     private void FixedUpdate()
     {
-        if (Physics2D.Raycast(box.bounds.center, transform.right * transform.localScale.x * -1f, rayDistance, checkLayer))
+        if (Physics2D.Raycast(box.bounds.center, transform.right * transform.localScale.x * -1f, rayDistance, playerLayer))
         {
-            monster.CanAttack(true);
+            monster.Attack();
         }
-        else { monster.CanAttack(false); }
     }
 }

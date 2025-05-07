@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlantCheck : MonoBehaviour
 {
-    public Monster monster;
+    public IAttackable monster;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        monster.CanAttack(true);
+        monster.Attack();
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    /*private void OnTriggerExit2D(Collider2D collision)
     {
-        monster.CanAttack(false);
-    }
+        monster.canAttack = false;
+    }*/
 }

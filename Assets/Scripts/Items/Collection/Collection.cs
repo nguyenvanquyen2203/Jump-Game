@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collection : MonoBehaviour
+public class Collection : PoolObj
 { 
     public void Active(Vector3 itemPos)
     {

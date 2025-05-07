@@ -1,20 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private Image playerIcon;
-    public CharacterDB characterDB;
-    // Start is called before the first frame update
+    [SerializeField] private TextMeshProUGUI coinTxt;
     void Start()
     {
-        playerIcon.sprite = characterDB.GetCharacter(GetCharacterIndex()).characterSprite;
+        GameManager.Instance.AddCoinCollectEvent(UpdateCoin);
+        playerIcon.sprite = PlayerData.Instance.GetCharacter().characterSprite;
     }
-    public int GetCharacterIndex()
+    public void UpdateCoin()
     {
-        if (!PlayerPrefs.HasKey("selectedIndex")) return 0;
-        return PlayerPrefs.GetInt("selectedIndex");
+        coinTxt.text = GameManager.Instance.GetCoin().ToString();
     }
 }

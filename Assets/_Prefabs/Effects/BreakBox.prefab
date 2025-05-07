@@ -9763,6 +9763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3138756631189635216}
   - component: {fileID: 3138756631189635219}
+  - component: {fileID: 7055353126565682177}
   m_Layer: 0
   m_Name: BreakBox
   m_TagString: Untagged
@@ -9806,6 +9807,18 @@ MonoBehaviour:
   - {fileID: 3138756630476136307}
   - {fileID: 3138756631926752514}
   - {fileID: 3138756632246224228}
+--- !u!114 &7055353126565682177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3138756631189635217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8234d25fd24e414f981600fcc2641f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3138756631926752513
 GameObject:
   m_ObjectHideFlags: 0

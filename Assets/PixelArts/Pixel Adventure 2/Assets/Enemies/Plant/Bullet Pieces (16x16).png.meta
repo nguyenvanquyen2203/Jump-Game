@@ -111,43 +111,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bullet Pieces_0
+      name: Bullet Pieces (16x16)_0
       rect:
         serializedVersion: 2
         x: 4
-        y: 4
+        y: 6
         width: 7
-        height: 8
+        height: 4
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 3, z: 0, w: 3}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34ff71c2acf9e0940aa664537c191079
-      internalID: -8356268723538296027
+      spriteID: 3ace06978d3a13b4fa570899d3cbf68a
+      internalID: 834217671
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bullet Pieces_1
+      name: Bullet Pieces (16x16)_1
       rect:
         serializedVersion: 2
         x: 21
-        y: 4
+        y: 6
         width: 7
-        height: 8
+        height: 4
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 3, z: 0, w: 3}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d61af1b172c37046a877ee9438cb1fa
-      internalID: 6190818703793877225
+      spriteID: e29d466478689054a8ee5fcb6f14c097
+      internalID: -415434312
       vertices: []
       indices: 
       edges: []
@@ -163,8 +163,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bullet Pieces_0: -8356268723538296027
-      Bullet Pieces_1: 6190818703793877225
+      Bullet Pieces (16x16)_0: 834217671
+      Bullet Pieces (16x16)_1: -415434312
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

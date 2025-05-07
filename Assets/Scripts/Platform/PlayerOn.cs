@@ -1,24 +1,26 @@
 using UnityEngine;
 
-public class PlayerOn : Subject, IObserver
+public class PlayerOn : MonoBehaviour, IPlatformObs
 {
-    private PointToPoint pointToPoint;
+    private PlatformSubject subject;
+    private IMovePlatform movePlatform;
     private PlayerMovement player;
-    private float speed;
-    private int direction;
+    //private float speed;
+    private Vector2 velocity = Vector2.zero;
     private void Awake()
     {
-        pointToPoint = GetComponent<PointToPoint>();
+        subject = GetComponent<PlatformSubject>();
+        movePlatform = GetComponent<IMovePlatform>();
     }
     private void Start()
     {
-        direction = pointToPoint.direction;
-        speed = pointToPoint.speed;
+        //velocity = movePlatform.direction;
+        //speed = movePlatform.speed;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         player = collision.gameObject.GetComponent<PlayerMovement>();
-        SetBonus(Vector2.right * speed * direction);
+        SetBonus(velocity);
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -28,12 +30,12 @@ public class PlayerOn : Subject, IObserver
     public void SetBonus(Vector2 bonusVector) => player?.SetBonus(bonusVector);
     private void OnEnable()
     {
-        pointToPoint.AddObserver(this);
+        subject.AddObserver(this);
     }
     private void ChangeDirection()
     {
-        direction = pointToPoint.direction;
-        SetBonus(Vector2.right * speed * direction);
+        //direction = movePlatform.direction;
+        SetBonus(velocity);
     } 
     public void OnNotify()
     {
@@ -41,6 +43,13 @@ public class PlayerOn : Subject, IObserver
     }
     private void OnDisable()
     {
-        pointToPoint.RemoveObserver(this);
+        subject.RemoveObserver(this);
+    }
+
+    public void SetVelocity(Vector2 velocity)
+    {
+        if (velocity.x == 0) velocity.y /= 2;
+        SetBonus(velocity);
+        this.velocity = velocity;
     }
 }
