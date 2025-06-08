@@ -3,29 +3,31 @@ using UnityEngine;
 
 public class CameraCtrl : MonoBehaviour
 {
-    public List<Vector2> yLimits;
+    private static CameraCtrl instance;
+    public static CameraCtrl Instance { get { return instance; } }
+    public List<Vector2> yFloorLimits;
     private Transform m_target;
     private CameraFollow camFollow;
-    float viewportHeight;
+    private float viewportHeight;
     // Start is called before the first frame update
     private void Awake()
     {
+        instance = this;
         camFollow = GetComponent<CameraFollow>();
+
+        float orthographicSize = Camera.main.orthographicSize;
+
+        viewportHeight = orthographicSize * 2;
     }
     void Start()
     {
         m_target = camFollow.GetTarget();
-
-        //Caculator viewport Height
-        float orthographicSize = Camera.main.orthographicSize;
-
-        viewportHeight = orthographicSize * 2;
     }
 
     // Update is called once per frame
     private void LateUpdate()
     {
-        foreach (Vector2 floorLimit in yLimits)
+        foreach (Vector2 floorLimit in yFloorLimits)
         {
             if (floorLimit.x <= m_target.position.y && floorLimit.y >= m_target.position.y)
             {
@@ -38,4 +40,6 @@ public class CameraCtrl : MonoBehaviour
     {
         camFollow.ChangeYLimit(bottomY, topY);
     }
+    public float GameHeight() => (yFloorLimits[yFloorLimits.Count -  1][1] - yFloorLimits[0][0] > 0) ? yFloorLimits[yFloorLimits.Count - 1][1] - yFloorLimits[0][0] : viewportHeight;
+    public float CenterY() => (yFloorLimits[yFloorLimits.Count - 1][1] + yFloorLimits[0][0]) / 2;
 }

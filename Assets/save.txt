@@ -1,1 +1,1 @@
-{"unlockLV":3,"currentLV":3,"levels":[{"star":3},{"star":3},{"star":3}]}
+{"unlockLV":3,"currentLV":2,"levels":[{"star":3},{"star":3},{"star":3}]}

@@ -1,1 +1,1 @@
-{"indexSkin":2,"coin":155}
+{"indexSkin":0,"coin":177}

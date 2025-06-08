@@ -27,6 +27,7 @@ public class Box : MonoBehaviour
     }
     public void Destroy()
     {
+        AudioManager.Instance.PlaySFX("BoxBroken");
         if (boxItem == null) return;
         GameObject item = Instantiate(boxItem, transform.position, Quaternion.identity);
         item.SetActive(true);
