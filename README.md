@@ -23,3 +23,6 @@
 ![Gameplay](https://github.com/user-attachments/assets/54b228cb-285d-4a44-930c-34f1352539b4)
 ##### Result
 ![Result](https://github.com/user-attachments/assets/524dcd05-f93b-4baa-8b6d-006bcfb524e5)
+
+# Link video: 
+https://youtu.be/6jOJT3REC7A
