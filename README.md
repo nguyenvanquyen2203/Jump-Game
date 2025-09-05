@@ -1,6 +1,11 @@
 # Jump Game. 
 <img width="1919" height="843" alt="image" src="https://github.com/user-attachments/assets/d55337a1-2bd7-44ae-a961-31f9519cc4be" />
 
+# Table of Contents
+
+- [Some Features](#some-features)
+- [Screenshots](#screenshots)
+
 # Some Features
 - 👾 **Various Enemies** – Face different types of enemies with some of unique behaviors.
 - 🛒 **Shopping** – Skin are unlocked and purchased through gameplay.
@@ -13,8 +18,8 @@
 ##### Option
 ![Option](https://github.com/user-attachments/assets/22cd7f36-4fd0-498e-a291-05e4403dd42a)
 ##### Choose Level
-![Option](https://github.com/user-attachments/assets/c6fb0a1d-f27b-411f-b46b-58d828ed5ad8)
+!ChooseLevel](https://github.com/user-attachments/assets/c6fb0a1d-f27b-411f-b46b-58d828ed5ad8)
 ##### Gameplay
-![Option](https://github.com/user-attachments/assets/54b228cb-285d-4a44-930c-34f1352539b4)
+![Gameplay](https://github.com/user-attachments/assets/54b228cb-285d-4a44-930c-34f1352539b4)
 ##### Result
-![Option](https://github.com/user-attachments/assets/524dcd05-f93b-4baa-8b6d-006bcfb524e5)
+![Result](https://github.com/user-attachments/assets/524dcd05-f93b-4baa-8b6d-006bcfb524e5)
