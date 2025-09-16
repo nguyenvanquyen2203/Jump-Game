@@ -17,10 +17,6 @@ public class Slime : RunMonster
     // Update is called once per frame
     void FixedUpdate()
     {
-        /*if (lockMove != 0)
-        {
-            Move();
-        }*/
         if (IsDead()) return;
         if (cooldown > 0f) cooldown -= Time.fixedDeltaTime;
         else

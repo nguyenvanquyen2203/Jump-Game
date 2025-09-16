@@ -7,23 +7,23 @@ public class BulletManager : MonoBehaviour
     public int numberBullet;
     private List<Bullet> bullets = new List<Bullet>();
     private Vector2 direction;
-    private PoolCtrl pieceBreak;
+    public enum BulletType
+    {
+        PlantBullet,
+        BeeBullet
+    }
+    public BulletType bulletType;
     // Start is called before the first frame update
     private void Awake()
     {
         for (int i = 0; i < numberBullet; i++)
         {
-            //Bullet bullet = CreateBullet();
             bullets.Add(CreateBullet());
         }
     }
     void Start()
     {
-        /*for (int i = 0; i < numberBullet; i++)
-        {
-            Bullet bullet = CreateBullet();
-            bullets.Add(bullet);
-        }*/
+       
     }
     public void SetDirection(Vector2 dir)
     {
@@ -53,15 +53,7 @@ public class BulletManager : MonoBehaviour
         Bullet bullet = Instantiate(bulletPref, transform);
         bullet.gameObject.SetActive(false);
         bullet.SetDirection(direction);
-        bullet.SetPieceBreakCtrl(pieceBreak);
+        bullet.SetPieceBreakCtrl(bulletType);
         return bullet;
-    }
-    public void SetPiece(PoolCtrl pieceBreak)
-    {
-        this.pieceBreak = pieceBreak;
-        foreach(Bullet bullet in bullets)
-        {
-            bullet.SetPieceBreakCtrl(pieceBreak);
-        }
     }
 }

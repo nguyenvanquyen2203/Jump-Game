@@ -77,6 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPref: {fileID: 5834336867226684217, guid: ebc04164d66e94848a3e2fefbccae024, type: 3}
   numberBullet: 5
+  bulletType: 1
 --- !u!1 &5424877047780256360
 GameObject:
   m_ObjectHideFlags: 0

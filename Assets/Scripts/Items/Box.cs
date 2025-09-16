@@ -14,7 +14,7 @@ public class Box : MonoBehaviour
     public void TakeHit()
     {
         boxHp--;
-        if (boxHp <= 0) collectionManager.ActivePoolCtrl(collectionManager.boxBreakCtrl, transform.position);
+        if (boxHp <= 0) collectionManager.ActivePoolCtrl(CollectionManager.PoolType.BoxBreak, transform.position);
         anim.Play("takeHit");
     }
     public void TakeHitAct()
@@ -27,6 +27,7 @@ public class Box : MonoBehaviour
     }
     public void Destroy()
     {
+        AudioManager.Instance.PlaySFX("BoxBroken");
         if (boxItem == null) return;
         GameObject item = Instantiate(boxItem, transform.position, Quaternion.identity);
         item.SetActive(true);

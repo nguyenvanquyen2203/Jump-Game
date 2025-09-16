@@ -706,6 +706,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 137975332315551274}
   overMenu: {fileID: 4087812621338962367}
   lockPanel: {fileID: 4087812621374048170}
+  nextLvBtn: {fileID: 4087812622320889510}
 --- !u!1 &137975332315551274
 GameObject:
   m_ObjectHideFlags: 0
@@ -2559,7 +2560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4087812621374048169
 RectTransform:
   m_ObjectHideFlags: 0

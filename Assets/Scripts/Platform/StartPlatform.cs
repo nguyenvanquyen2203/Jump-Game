@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Start : MonoBehaviour
+public class StartPlatform : MonoBehaviour
 {
     private Animator anim;
     private void Awake()

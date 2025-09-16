@@ -9,7 +9,7 @@ public class GameMenuCtrl : MonoBehaviour, IInputObserver
     public GameObject pauseMenu;
 
     public GameObject overMenu;
-    public GameObject lockPanel;
+    public Button nextLvBtn;
     private static GameMenuCtrl instance;
     public static GameMenuCtrl Instance { get { return instance; } }
     private InputAction pauseInput;
@@ -52,7 +52,7 @@ public class GameMenuCtrl : MonoBehaviour, IInputObserver
     public void GameOver(bool _isWin)
     {
         OpenMenu(overMenu);
-        lockPanel.SetActive(!_isWin);
+        nextLvBtn.interactable = _isWin;
     }
     public void OpenMenu(GameObject menu)
     {
