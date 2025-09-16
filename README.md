@@ -11,6 +11,7 @@
 - 🛒 **Shopping** – Skin are unlocked and purchased through gameplay.
 - 💾 **Save & Load** – Carry your progress across multiple game sessions.
 - 🚀 **Optimization** - Using Singleton, Object Pooling, Observer Pattern, Scriptable Objects ...
+- ⁉️ **Physics** - Using free-fall and simple harmonic motion formulas to create smooth movement.
 
 # Screenshots
 ##### Main Menu
