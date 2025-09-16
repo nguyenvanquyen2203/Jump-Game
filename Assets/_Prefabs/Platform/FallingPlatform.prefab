@@ -4982,3 +4982,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windEffect: {fileID: 9159156499641671983}
+  bonusItem: {fileID: 4272350415914948449, guid: 4409ca18c4c9a8c4eb85ac9be4345d63, type: 3}

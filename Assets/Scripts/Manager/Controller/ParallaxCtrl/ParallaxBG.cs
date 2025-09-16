@@ -25,7 +25,7 @@ public class ParallaxBG : MonoBehaviour
         cameraTransform = Camera.main.transform;
         mapHeight = CameraCtrl.Instance.GameHeight();
         lastCameraPosition = cameraTransform.position;
-        transform.position = new Vector3(lastCameraPosition.x, CameraCtrl.Instance.CenterY(), lastCameraPosition.z);
+        transform.position = new Vector3(lastCameraPosition.x, CameraCtrl.Instance.CenterY(), 0f);
     
         spriteHeight = bg.bounds.size.y;
         scaleValue = mapHeight / spriteHeight;

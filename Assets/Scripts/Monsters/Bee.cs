@@ -21,7 +21,7 @@ public class Bee : FlyingMonster, IShootable, IAttackable
         ChangeDirection();
         cooldownAttack = timeAttack;
         beeBulletManager.SetDirection(Vector2.down);
-        beeBulletManager.SetPiece(CollectionManager.Instance.beePieceBreakCtrl);
+        //beeBulletManager.SetPiece(CollectionManager.Instance.beePieceBreakCtrl);
     }
 
     // Update is called once per frame

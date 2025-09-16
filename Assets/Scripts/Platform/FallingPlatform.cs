@@ -1,6 +1,4 @@
-using JetBrains.Annotations;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FallingPlatform : MonoBehaviour
@@ -8,12 +6,17 @@ public class FallingPlatform : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     public ParticleSystem windEffect;
+    public GameObject bonusItem;
     private bool isActive;
+    private Vector3 originalPos;
+    private bool isSpawn;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         isActive = true;
+        originalPos = transform.position;
+        isSpawn = false;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -21,6 +24,16 @@ public class FallingPlatform : MonoBehaviour
         {
             StartCoroutine(ShakeObject());
             isActive = false;
+        }
+        if (collision.gameObject.CompareTag("Trap") && !isSpawn)
+        {
+            isSpawn = true;
+            CancelInvoke();
+            GameObject bonusObj = Instantiate(bonusItem, transform.position, transform.rotation);
+            LeanTween.move(bonusObj, originalPos, .5f).setEase(LeanTweenType.easeInOutQuad);
+            CollectionManager.Instance.ActivePoolCtrl(CollectionManager.PoolType.Explosion, transform.position);
+            AudioManager.Instance.PlaySFX("Explosion");
+            gameObject.SetActive(false);
         }
     }
     private IEnumerator ShakeObject()

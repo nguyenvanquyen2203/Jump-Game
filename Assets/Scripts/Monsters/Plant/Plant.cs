@@ -14,7 +14,7 @@ public class Plant : AttackMonster, IShootable
     void Start()
     {
         plantBulletManager.SetDirection(Vector2.left);
-        plantBulletManager.SetPiece(CollectionManager.Instance.pieceBreakCtrl);
+        //plantBulletManager.SetPiece(CollectionManager.Instance.pieceBreakCtrl);
 
         cooldownAttack = 0;     
     }

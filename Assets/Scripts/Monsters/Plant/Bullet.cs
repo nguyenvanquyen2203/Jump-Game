@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private float bulletSpeed;
     private CollectionManager collectionManager;
-    private PoolCtrl pieceBreakCtrl;
+    private CollectionManager.PoolType bulletType;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -22,9 +22,13 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Monster")) return;
         if (collision.CompareTag("Player")) collision.GetComponent<PlayerHealth>().Hurt();
-        collectionManager.ActivePoolCtrl(pieceBreakCtrl, transform.position);
+        collectionManager.ActivePoolCtrl(bulletType, transform.position);
         gameObject.SetActive(false);
     }
     public void SetDirection(Vector2 _dir) => direction = _dir;
-    public void SetPieceBreakCtrl(PoolCtrl _pieceBreakCtrl) => pieceBreakCtrl = _pieceBreakCtrl;
+    public void SetPieceBreakCtrl(BulletManager.BulletType type)
+    {
+        if (type == BulletManager.BulletType.BeeBullet) bulletType = CollectionManager.PoolType.BeePiece;
+        if (type == BulletManager.BulletType.PlantBullet) bulletType = CollectionManager.PoolType.PlantPiece;
+    }
 }

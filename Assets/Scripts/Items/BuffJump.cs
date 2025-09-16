@@ -11,8 +11,7 @@ public class BuffJump : Item
     }
     protected override void Disable()
     {
-        collectionManager.ActivePoolCtrl(collectionManager.buffJumpCtrl, transform.position);
-        //collectionManager.ActiveFruitCollection(transform.position);
+        collectionManager.ActivePoolCtrl(CollectionManager.PoolType.BuffJump, transform.position);
         Invoke(nameof(ActiveBuffJump), timeActive);
         gameObject.SetActive(false);
     }

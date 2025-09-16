@@ -14,7 +14,7 @@ public class Box : MonoBehaviour
     public void TakeHit()
     {
         boxHp--;
-        if (boxHp <= 0) collectionManager.ActivePoolCtrl(collectionManager.boxBreakCtrl, transform.position);
+        if (boxHp <= 0) collectionManager.ActivePoolCtrl(CollectionManager.PoolType.BoxBreak, transform.position);
         anim.Play("takeHit");
     }
     public void TakeHitAct()

@@ -16,7 +16,7 @@ public abstract class BuffItem : MonoBehaviour
     }
     private void Disable()
     {
-        collectionManager.ActivePoolCtrl(collectionManager.buffJumpCtrl, transform.position);
+        collectionManager.ActivePoolCtrl(CollectionManager.PoolType.BuffJump, transform.position);
         gameObject.SetActive(false);
     }
 }
