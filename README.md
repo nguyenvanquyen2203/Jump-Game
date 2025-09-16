@@ -1,4 +1,4 @@
-# Jump Game. 
+# Jump Game.
 <img width="1919" height="843" alt="image" src="https://github.com/user-attachments/assets/d55337a1-2bd7-44ae-a961-31f9519cc4be" />
 
 # Table of Contents
